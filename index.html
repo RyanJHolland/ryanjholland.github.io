@@ -1,13 +1,291 @@
 <!doctype html>
 <html lang="en">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 
 <head>
+<style>
+body {
+  font-family: Tahoma;
+  background-color:transparent;
+  
+}
+
+html { 
+background: url(https://static.pexels.com/photos/9547/mountain-st-cergue-mont-blanc-large.jpeg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+
+}
+
+.navbar {
+  background-color: #FFF7B7;
+  
+}
+
+h2 {
+  padding-top: 100px;
+  color: black;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 1px -2px #FFF7B7;
+  
+}
+
+
+
+h3 {
+  margin: auto;
+  color: white;
+  font-family: 'Josefin Slab', serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  background-color: transparent;
+  width: 28%;
+  padding-top: 5px;
+  border: inset;
+  border-radius: 20%;
+  border-color: #FFF7B7;
+  
+}
+
+.jumbotron {
+  padding-top: 100px;
+  background-color: transparent;
+  
+}
+
+.navbar .nav > li > a {
+  color:  black;
+  font-size: 20px;
+  
+}
+
+.portfolioLink {
+  width:20%;
+    height: auto;
+    background-color: #FFF7B7;
+    padding: 10px;
+    text-align: center;
+}
+
+.portfolioLink :hover {
+  background-color: white;
+}
+
+.navbar-nav :hover {
+  background-color: white;
+  
+}
+
+#background2 {
+background: url(https://static.pexels.com/photos/3014/black-and-white-architecture.jpg) no-repeat center center fixed;
+  padding-top: 10vw;
+  padding-bottom: 20vw;
+  min-height: 50vw;
+  
+}
+
+.container {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  
+}
+
+#background2text {
+  float: left;
+  font-family: 'Josefin Slab', serif;
+  font-size: 35px;
+  font-weight: bold;
+  padding-left: 30px;
+  
+}
+
+#background2img {
+  float: right;
+  padding-right: 20vw;
+  border-radius:50%;
+  
+}
+
+div {
+  overflow:hidden;
+}
+
+#background3 {
+  background: url(https://upload.wikimedia.org/wikipedia/commons/e/e6/Milford_Pink_Granite.jpg) no-repeat center center fixed;
+  padding-top: 10vw;
+  padding-bottom: 20vw;
+  min-height: 40vw;
+  color: black;
+  font-family: 'Josefin Slab', serif; 
+}
+
+.btn-block {
+  font-size: 55px;
+  background-color:#FFF7B7;
+  padding-top: 10px;
+  
+}
+.btn-block:hover {
+  background-color: white;
+  
+}
+
+h4{
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#portfolio{
+  font-background: white;
+  font-size: 30px;
+  background: url(http://7-themes.com/data_images/out/48/6935821-tropical-beach.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+  min-height:70vw;
+}
+
+h5{
+ margin: auto;
+  color: white;
+  font-family: 'Josefin Slab', serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 100px;
+  background-color: transparent;
+  width: 28%;
+  padding-top: 5px;
+margin-top:10vw;
+}
+</style>
+
   <meta charset="utf-8">
   <title>Ryan Holland's portfolio</title>
 </head>
 
 <body>
-  Hello World
+
+<div class="container" id="top">
+  <div class="row">
+    <div class="col-md-12">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class='col-md-12'>
+          <div class="navbar-header">
+            <ul class="nav navbar-nav navbar-left">
+            <li>
+              <a href="#top">Home</a>
+            </li>
+            <li>
+              <a href="#background2">About</a>
+            </li>
+            <li>
+              <a href="#portfolio">Portfolio</a>
+            </li>
+            <li>
+              <a href="#background3">Contact</a>
+            </li>
+          </ul>
+
+          </div>
+          
+          
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="jumbotron" style="margin-bottom:30vw;">
+    <h2>Ryan Holland</h2>
+    <h3>Web developer in Houston, Texas</h3>
+  </div>
+
+<div id="background2" class="container-fluid">
+  <span id="background2text">
+    <br>I'm a self-taught freelance web designer<br>and programmer based in Houston, Texas.
+    <br><br>
+    HTML5, CSS3, Javascript, JQuery, Bootstrap,<br>responsive design, CodePen, Git
+    <br><br><br><br><br><br>
+  </span>
+  <img src="https://oaklandnorth.net/wp-content/uploads/2012/10/Common_Squirrel.jpg" id="background2img">
+</div>
+ 
+<div class="container-fluid" id="portfolio">
+  <h5>Portfolio</h5>
+  <br><br>
+  <div class="row">
+
+    <a href="http://codepen.io/RyanJHolland/full/ZbdBNK/" style="display:block;">
+    <div class="col-lg-3 img-responsive portfolioLink">
+              <img src="file:///C:/Users/Ryan/Documents/MyWebSite/simon.png" style="max-width:100%;max-height:100%">
+              <br>A "Simon"-style game: It plays a sequence which you have to repeat back. I used Bootstrap, JQuery, and a lot of Javascript.
+              <a href="http://codepen.io/RyanJHolland/pen/ZbdBNK" style="color: green"> Click here to see the code.</a>
+    </div>
+    </a>
+
+    <a href="http://codepen.io/RyanJHolland/full/LpvmER" style="display:block;">
+    <div class="col-lg-3 img-responsive portfolioLink">
+              <img src="file:///C:/Users/Ryan/Documents/MyWebSite/tictactoe.png" style="max-width:100%;max-height:100%">
+    </div>
+    </a>
+
+    <a href="http://codepen.io/RyanJHolland/full/LpvmER" style="display:block;">
+          <div class="col-lg-3 img-responsive portfolioLink">
+              <a href="#"><img src="#">
+    </div>
+    </a>
+
+    <a href="http://codepen.io/RyanJHolland/full/LpvmER" style="display:block;">
+    <div class="col-lg-3 img-responsive portfolioLink">
+              <a href="#"><img src="#">
+    </div>
+    </a>
+
+    </div>
+  </div>
+  </div>
+  
+  <div id="background3" class="container-fluid">
+  <div class="jumbotron">
+    <h4 class='text-center'>Contact me</h4>
+    <div class='row'>
+      <div class='col-md-3'>
+        <button class='btn btn-block' href='#' target='_blank'>Twitter</button>
+      </div>
+      <div class='col-md-3'>
+        <button class='btn btn-block' href='#' target='_blank'>LinkedIn</button>
+      </div>
+      <div class='col-md-3'>
+        <button class='btn btn-block' href='https://github.com/RyanJHolland' target='_blank'>GitHub</button>
+      </div>
+      <div class='col-md-3'>
+        <button class='btn btn-block' href='#' target='_blank'>Free Code Camp</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 </body>
 
 </html>
