@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Weather</title>
+	<meta name="description" content="Local weather viewer">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+   body {
+    background-color: gray;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    font-family: Verdana, serif;
+    background-position: center;
+    background-size: 100% auto;
+    position: relative;
+    font-weight: bold;
+    margin-top: 5%;
+  }
+</style>
+
+<script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+  <p id="location"></p>
+  <p id="temp"></p>
+  <p id="weather"></p>
+  <p id="wind"></p>
+  <p id="sun"></p>
+  <input type="button" id="toggle" value="Toggle between metric and Imperial">
+</input>
+
+<script>
+  $(document).ready(function() {
+
+  if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+
+      $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&APPID=e5952f2f8eb2cfa13e068cf2aa3c478a", function(json) {
+
+        if (json.sys.country = "US") {
+          metric = false;
+        } else {
+          metric = true;
+        }
+
+        function loadData() {
+            if (metric === false) {
+              temp = Math.round(json.main.temp * 9 / 5 - 459.67) + "&deg; F";
+              windSpeed = Math.round(2.23694 * json.wind.speed) + " miles per hour ("
+            } else {
+              temp = Math.round(json.main.temp - 273.15) + "&deg; C";
+              windSpeed = Math.round(json.wind.speed) + " meters per second ("
+            }
+
+            $("#temp").html(temp);
+
+            $("#location").html(json.name);
+            $("#weather").html(json.weather[0].description.charAt(0).toUpperCase() + json.weather[0].description.slice(1) + ".");
+
+            var cardinal = "";
+
+            if (json.wind.deg <= 22.5) {
+              cardinal = "North"
+            } else if (22.5 <= json.wind.deg <= 67.5) {
+              cardinal = "NorthEast"
+            } else if (67.5 <= json.wind.deg <= 112.5) {
+              cardinal = "East"
+            } else if (112.5 <= json.wind.deg <= 157.5) {
+              cardinal = "SouthEast"
+            } else if (157.5 <= json.wind.deg <= 202.5) {
+              cardinal = "South"
+            } else if (202.5 <= json.wind.deg <= 247.5) {
+              cardinal = "SouthWest"
+            } else if (247.5 <= json.wind.deg <= 292.5) {
+              cardinal = "West"
+            } else if (292.5 <= json.wind.deg <= 337.5) {
+              cardinal = "NorthWest"
+            } else if (337.5 <= json.wind.deg <= 360) {
+              cardinal = "North"
+            }
+
+            $("#wind").html("The wind is blowing " + cardinal + " at " + windSpeed + Math.round(1.94384 * json.wind.speed) + " knots.)")
+
+            now = new Date();
+            sunset = new Date(json.sys.sunset * 1000);
+            sunrise = new Date(json.sys.sunrise * 1000);
+
+            if (sunset < now || now < sunrise) {
+
+              document.body.style.backgroundImage = "url('http://www.fromquarkstoquasars.com/wp-content/uploads/2013/11/night_sky-9030_0.jpeg')"
+
+              document.body.style.color = "white";
+
+              if (now.getHours() < sunrise.getHours()) {
+                minUntilRise = ((sunrise.getHours()*60 - now.getHours()*60));
+              } else {
+                minUntilRise = ((sunrise.getHours() + (24 - now.getHours())) * 60 + sunrise.getMinutes() + (60 - now.getMinutes()))
+              }
+              $("#sun").html("The sun will rise in " + Math.floor(minUntilRise / 60) + " hours and " + minUntilRise % 60 + " minutes.")
+
+            } else {
+
+              document.body.style.backgroundImage = "url('http://elbrooklyntaco.com/wp-content/uploads/2011/07/clear-skies.jpg')"
+
+              document.body.style.color = "black";
+
+              minUntilSet = ((sunset.getHours() - now.getHours()) * 60 + sunset.getMinutes() - now.getMinutes())
+
+              $("#sun").html("The sun will set in " + Math.floor(minUntilSet / 60) + " hours and " + minUntilSet % 60 + " minutes.")
+
+            }
+
+          } //end of loadData function
+
+        $("#toggle").click(function() {
+          metric = !metric;
+          loadData();
+        });
+
+        loadData();
+      })
+    }, function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+  })
+  };
+
+})
+</script>
+</body>
+</html>

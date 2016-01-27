@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Tic-Tac-Toe</title>
+  <meta name="description" content="Tic-Tac-Toe">
+  <meta name="author" content="Ryan Holland">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="jquery-1.12.0.min.js"></script>
+  <script src="tictactoe.js"></script>
+  <link href="tictactoe.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <h1>Tic-Tac-Toe</h1>
+  <form id="XorO">
+    <p style="font-size: 20px;">Play as:</p>
+    <input type="radio" value="X" name="XorO" id="X" checked>X
+    <br>
+    <input type="radio" value="O" name="XorO" id="O">O
+    <br>
+  </form>
+  <br>
+  <form id="Difficulty">
+    <input type="radio" value="Easy" name="Difficulty" id="Easy" checked>Easy
+    <br>
+    <input type="radio" value="Medium" name="Difficulty" id="Medium">Hard
+    <br>
+    <input type="radio" value="Hard" name="Difficulty" id="Hard">Unbeatable
+  </form>
+  <br>
+
+  <h3 id="Record"></h3>
+
+  <div id="board">
+    <div class="slot" id="1" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="2" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="3" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="4" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="5" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="6" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="7" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="8" onclick="move(event)">&nbsp;</div>
+    <div class="slot" id="9" onclick="move(event)">&nbsp;</div>
+  </div>
+
+  Whomever lost the last game goes first the next time.
+
+</body>
+</html>

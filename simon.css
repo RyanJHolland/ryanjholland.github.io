@@ -1,0 +1,82 @@
+html {
+  text-align: center;
+  margin-top: 30px;
+}
+
+body {
+  background-color: black;
+}
+
+#feedback, #feedback2 {
+  color: white;
+}
+
+button {
+  width: 95%;
+  height: 90px;
+  border: 0px;
+}
+
+#restart {
+  display: hidden;
+  position: absolute;
+}
+
+#start,
+#restart {
+    font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  height: 90px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+}
+
+#strict {
+  font-weight: bold;
+  width: 95%;
+  height: 90px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.leftside {
+  text-align: auto;
+}
+
+.rightside {
+  text-align: auto;
+}
+
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding: 0;
+}
+
+#btn1 {
+  background-color: green;
+}
+
+#btn2 {
+  background-color: red;
+}
+
+#btn3 {
+  background-color: purple;
+}
+
+#btn4 {
+  background-color: blue;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.colorbutton:click {
+  background-color: white;
+}
