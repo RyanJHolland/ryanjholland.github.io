@@ -4,6 +4,12 @@ html {
   font-size: 100px;
 }
 
+body {
+  color: #000033;
+  background-color: #f1f3f3;
+  font-family: "helvetica";
+}
+
 h1 {
   font-size: 30px;
 }
@@ -14,8 +20,8 @@ h3 {
 }
 
 #XorO {
-  background-color: black;
-  color: white;
+  background-color: #000033;
+  color: #f1f3f3;
   width: 100px;
   padding-top: 2px;
   padding-right: 10px;
@@ -29,8 +35,8 @@ h3 {
 
 #Difficulty {
   margin-left: 15%;
-  background-color: black;
-  color: white;
+  background-color: #000033;
+  color: #f1f3f3;
   width: 150px;
   padding-top: 2px;
   padding-right: 10px;
@@ -54,13 +60,22 @@ h3 {
   width: 100px;
   height: 100px;
   float: left;
-  background-color: lightblue;
+  background-color: #f1f3f3;
   border-radius: 50%;
+  border: 1px solid #000033;
   font-size: 70px;
   font-weight: bold;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+  color: #000033;
 }
 
 .slot:hover {
    cursor: pointer;
   cursor: hand;
+  background-color: #ccffff;
+  color: #990033;
 }

@@ -78,12 +78,7 @@ $(document).ready(function() {
   }
 
   winCheck = function() {
-    if (slotCounter == 0) {
-      $(".slot").css("background-color", "yellow");
-      alert("A tie.");
-      ties += 1;
-      restart();
-    }
+    
     for (var x in chains) {
       var xCounter = 0;
       var oCounter = 0;
@@ -101,7 +96,15 @@ $(document).ready(function() {
         }
       }
     }
+    if (slotCounter == 0) {
+      $(".slot").css("background-color", "yellow");
+      alert("A tie.");
+      ties += 1;
+      restart();
+    }
   }
+
+
     /*
       for (var i = 1; i < 10; i++) {
         document.getElementById()
@@ -195,7 +198,7 @@ $(document).ready(function() {
 
       compMove = function() {
         playerTurn = 0;
-        $(".slot").css("background-color", "lightgray");
+        $(".slot").css("background-color", "lightblue");
         setTimeout(function() {
           //disable mouse here
           if (playerMark == "X") {
@@ -228,7 +231,8 @@ $(document).ready(function() {
 
           playerTurn = 1;
 
-          $(".slot").css("background-color", "lightblue");
+          $(".slot").css("background-color", "#f1f3f3");
+          $(".slot:hover").css("background-color", "#ccffff");
 
           winCheck();
 
