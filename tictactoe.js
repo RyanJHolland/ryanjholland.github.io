@@ -1,11 +1,15 @@
 $(document).ready(function() {
 
-  playerWins = 0;
-  playerLosses = 0;
-  ties = 0;
-  slotCounter = 9;
-  playerTurn = 1;
-
+  playerWinsCounter = 0;
+  compWinsCounter = 0;
+  tiesCounter = 0;
+  emptySlotCounter = 9;
+  playerGoesNext = true;
+  playerWentLast = false;
+  winningChain = ""; // for the graphics that highlight it
+  playerMark = "X";
+  compMark = "O";
+  gameOver = false;
   chains = [
   ["1", "2", "3"],
   ["4", "5", "6"],
@@ -17,225 +21,304 @@ $(document).ready(function() {
   ["3", "5", "7"]
   ];
 
-  markAssign = function() {
-    if (document.getElementById("X").checked) {
-      playerMark = "X";
+
+
+  resetBoard = function() {
+    console.log("resetBoard");
+    gameOver = false;
+    for (var i = 1; i < 10; i++) {
+      document.getElementById(i).className = "slot";
+      document.getElementById(i).style = "pointer-events:none;";
+      $("#" + i).html("&nbsp;");
+    }
+    if (playerGoesNext) {
+      setTimeout(function() {
+        enableMouse();
+      }, 300);
     } else {
-      playerMark = "O";
+      compMove();
+    }
+    emptySlotCounter = 9;
+    $("#Record").html("Difficulty: " + Math.max((playerWinsCounter/(compWinsCounter+1))) + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+  }
+
+  function disableMouse() {
+    console.log("disableMouse");
+    for (var i = 1; i < 10; i++) {
+      document.getElementById(i).style = "pointer-events:none;";
+    }
+  }
+  function enableMouse() {
+    console.log("enableMouse");
+    for (var i = 1; i < 10; i++) {
+      document.getElementById(i).style = "pointer-events:auto;";
     }
   }
 
-  setDifficulty = function() {
-    if (document.getElementById("Easy").checked) {
-      difficulty = "Easy";
-    } else if (document.getElementById("Medium").checked) {
-      difficulty = "Medium";
+  var fadeSlot = 1;
+  function fadeOut() {
+    console.log("fadeOut");
+    if (fadeSlot < 10) {
+      setTimeout(function(){
+        document.getElementById(fadeSlot.toString()).className = "slot";
+        fadeSlot++;
+        fadeOut();
+      }, 150);
     } else {
-      difficulty = "Hard";
+      fadeSlot = 1;
+      setTimeout(function() {
+        resetBoard();
+      }, 1650);
     }
-  }
-
-  restart = function() {
-    $("#1").html("&nbsp;");
-    $("#2").html("&nbsp;");
-    $("#3").html("&nbsp;");
-    $("#4").html("&nbsp;");
-    $("#5").html("&nbsp;");
-    $("#6").html("&nbsp;");
-    $("#7").html("&nbsp;");
-    $("#8").html("&nbsp;");
-    $("#9").html("&nbsp;");
-    $(".slot").css("background-color", "lightblue");
-    slotCounter = 9;
-    $("#Record").html("Your victories: " + playerWins + "<br>Your losses: " + playerLosses + "<br>Ties: " + ties);
-
   }
 
   someoneWon = function(winner) {
+    console.log("someoneWon");
+    disableMouse();
+    gameOver = true;
+    
     if (winner === "X") {
-      if (playerMark == "X") {
-        $(".slot").css("background-color", "lightgreen");
-        alert("Victory!");
-        playerWins += 1;
-      } else {
-        $(".slot").css("background-color", "red");
-        alert("Defeat...");
-        playerLosses += 1;
+      console.log("player won");
+      for (var i in winningChain) {
+        document.getElementById(winningChain[i]).className = "playerWin";
       }
-      restart();
+      playerGoesNext = false;
+      playerWinsCounter += 1;
+
+      setTimeout(function() { 
+        fadeOut();
+      },1000);
+
     } else if (winner === "O") {
-      if (playerMark == "O") {
-        $(".slot").css("background-color", "lightgreen");
-        alert("Victory!");
-        playerWins += 1;
-      } else {
-        $(".slot").css("background-color", "red");
-        alert("Defeat...");
-        playerLosses += 1;
+      console.log("comp won");
+      for (var i in winningChain) {
+        document.getElementById(winningChain[i]).className = "compWin";
       }
-      restart();
+      playerGoesNext = true;
+      compWinsCounter += 1;
+
+      setTimeout(function() {
+        fadeOut();
+      },1000);
+
     }
   }
 
   winCheck = function() {
-    
-    for (var x in chains) {
+    console.log("winCheck");
+    var winnerFound = false;
+    for (var chain in chains) {
       var xCounter = 0;
       var oCounter = 0;
-      for (var i in chains[x]) {
-        if (document.getElementById(chains[x][i]).innerHTML === "X") {
+      for (var i in chains[chain]) {
+        if (document.getElementById(chains[chain][i]).innerHTML === "X") {
           xCounter += 1;
         }
-        if (document.getElementById(chains[x][i]).innerHTML === "O") {
+        if (document.getElementById(chains[chain][i]).innerHTML === "O") {
           oCounter += 1;
         }
         if (xCounter === 3) {
+          winnerFound = true;
+          winningChain = chains[chain];
           someoneWon("X");
         } else if (oCounter === 3) {
+          winnerFound = true;
+          winningChain = chains[chain];
           someoneWon("O");
         }
       }
     }
-    if (slotCounter == 0) {
-      $(".slot").css("background-color", "yellow");
-      alert("A tie.");
-      ties += 1;
-      restart();
+
+    if (emptySlotCounter == 0 && winnerFound == false) { // a tie
+      console.log("tie found");
+      tiesCounter += 1;
+
+      // tie wipe animation
+      function tieGraphic(arg) {
+        setTimeout(function() {
+          if (arg < 10) {
+            document.getElementById(arg).innerHTML = "tie";
+            tieGraphic(arg+1);
+          }
+        }, 150);
+      }
+      tieGraphic(2);
+      document.getElementById("1").innerHTML = "tie";
+
+
+
+      if (playerWentLast) {
+        playerGoesNext = false;
+      }
+
+      fadeOut();
     }
   }
 
 
-    /*
-      for (var i = 1; i < 10; i++) {
-        document.getElementById()
-      }
-      */
+  move = function(e) {
+    console.log("move function (player clicked on slot, empty or not)");
+    disableMouse();
+    if (!e) {
+      e = window.event;
+    }
+    var eventTarget = e.target || e.srcElement;
 
-      move = function(e) {
+    var mark = document.getElementById(eventTarget.id).innerHTML;
 
-        if (!e) {
-          e = window.event;
-        }
-        var eventTarget = e.target || e.srcElement;
-        markAssign();
-        setDifficulty();
+    if (mark == "&nbsp;" && playerGoesNext) {
+      document.getElementById(eventTarget.id).innerHTML = playerMark;
+      document.getElementById(eventTarget.id).className = "playerSlot";
 
-        var mark = document.getElementById(eventTarget.id).innerHTML;
+      emptySlotCounter -= 1;
+      playerWentLast = true;
+      winCheck();
 
-        if (mark == "&nbsp;" && playerTurn) {
-          document.getElementById(eventTarget.id).innerHTML = playerMark;
-
-          slotCounter -= 1;
-
-          winCheck();
+      if (emptySlotCounter>=1 && !gameOver) {
+        playerGoesNext = false;
+        setTimeout(function(){ //adds a pleasant delay to the comp response
           compMove();
+        },1000);
+      }
+    } else if (playerGoesNext) {
+      enableMouse();
+    }
+  }
 
+// I'm using the word "chain" to describe the 3-slot, straight-line, victory conditions. The AI looks at each slot and 
+// prioritizes it by how many chains it is in, taking into account what marks (X or O) are in each of those chains.
+// It prefers slots which are in chains which have other Os, or which have an X, so it can block that chain.
+AI = function() {
+  console.log("AI");
+  compMovedAlready = false;
+
+  chainPriorityList = [
+  [0,1],
+  [1,1],
+  [2,1],
+  [3,1],
+  [4,1],
+  [5,1],
+  [6,1],
+  [7,1]
+  ];
+
+  slotPriorityList = [
+  0,0,0,
+  0,0,0,
+  0,0,0
+  ];
+
+      // For each chain:
+      for (var chain in chains) {
+
+        var playerMarkCount = 0;
+        var compMarkCount = 0;
+
+        // Count how many of each mark is in the chain on the board now.
+        for (var slot in chains[chain]) {
+          if (document.getElementById(chains[chain][slot]).innerHTML === playerMark) {
+            playerMarkCount += 1;
+          }
+          if (document.getElementById(chains[chain][slot]).innerHTML === compMark) {
+            compMarkCount += 1;
+          }
+        } 
+
+        // Prioritize it depending on what's in it:
+        if (compMarkCount === 1 && playerMarkCount === 0) {
+          chainPriorityList[chain][1] ++; // finish your own chain
+        } else if (compMarkCount === 0 && playerMarkCount === 1) { 
+          chainPriorityList[chain][1] ++; // block enemy chain
+        } else if ((compMarkCount === 1 || compMarkCount === 2) && (playerMarkCount === 1 || playerMarkCount === 2)) {
+          chainPriorityList[chain][1] -= 100; // ignore inert chain
+        } else if (playerMarkCount === 2) {
+          chainPriorityList[chain][1] += 100; // block enemy victory
+        } else if (compMarkCount === 2) {
+          chainPriorityList[chain][1] += 200; // win game
+        }
+
+        // Update slot priority list
+        for (var slot in chains[chain]) {
+          slotPriorityList[chains[chain][slot]-1] += 1 + chainPriorityList[chain][1];
         }
       }
 
-      AI = function() {
-        movedAlready = false;
-
-        if ($("#5").html() == "&nbsp;") {
-          $("#5").html(compMark);
-          movedAlready = true;
-        } else if (slotCounter === 7) {
-          if ($("#1").html() == playerMark) {
-            $("#9").html(compMark);
-          } else if ($("#3").html() == playerMark) {
-            $("#7").html(compMark);
-          } else if ($("#7").html() == playerMark) {
-            $("#3").html(compMark);
-          } else {
-            $("#1").html(compMark);
-          }
-          movedAlready = true;
-        } else if (slotCounter === 6) {
-          $("#6").html(compMark);
-          movedAlready = true;
+      var countdown = 9;
+    // Mark the highest ranking available slot
+    function compPlaceIntelligentMark() {
+      console.log("compPlaceIntelligentMark");
+      if (countdown===0) {
+        randomMove(); // If there's only one slot available, and it can't detect it, it moves randomly until it finds it.
+        // Otherwise it was endlessly looping sometimes. This is faster than coding an iteration to find it.
+      } else {
+        var bestSlot = slotPriorityList.indexOf(Math.max(...slotPriorityList)) + 1;
+        if (document.getElementById(bestSlot).innerHTML == "&nbsp;") {
+          document.getElementById(bestSlot).innerHTML = compMark;
+          document.getElementById(bestSlot).className = "compSlot";
+          compMovedAlready = true; 
         } else {
-          for (var x in chains) {
-            var playerChainCount = 0;
-            var compChainCount = 0;
-            for (var i in chains[x]) {
-              if (document.getElementById(chains[x][i]).innerHTML === playerMark) {
-                playerChainCount += 1;
-              }
-              if (document.getElementById(chains[x][i]).innerHTML === compMark) {
-                compChainCount += 1;
-              }
-            }
-            if (playerChainCount === 2 && movedAlready === false) {
-              for (var i in chains[x]) {
-                if (document.getElementById(chains[x][i]).innerHTML == "&nbsp;") {
-                  document.getElementById(chains[x][i]).innerHTML = compMark;
-                  movedAlready = true;
-                }
-              }
-            } else if (compChainCount === 2 && movedAlready === false) {
-              for (var i in chains[x]) {
-                if (document.getElementById(chains[x][i]).innerHTML == "&nbsp;") {
-                  document.getElementById(chains[x][i]).innerHTML = compMark;
-                  movedAlready = true;
-                }
-              }
-            }
-          }
-        }
-        if (!movedAlready) {
-          if ($("#1").html() == "&nbsp;") {
-            $("#1").html(compMark);
-          } else if ($("#3").html() == "&nbsp;") {
-            $("#3").html(compMark);
-          } else if ($("#7").html() == "&nbsp;") {
-            $("#7").html(compMark);
-          } else if ($("#9").html() == "&nbsp;") {
-            $("#9").html(compMark);
-          }
-          movedAlready = true;
-        }
+          slotPriorityList[bestSlot - 1 ] = 0;
+          countdown--;
+          compPlaceIntelligentMark();
+        } 
       }
+    }
+    compPlaceIntelligentMark();
+  }
 
-      compMove = function() {
-        playerTurn = 0;
-        $(".slot").css("background-color", "lightblue");
-        setTimeout(function() {
-          //disable mouse here
-          if (playerMark == "X") {
-            compMark = "O";
+  compMove = function() {
+    console.log("compMove");
+    disableMouse();
+
+    highlights = emptySlotCounter/2;
+
+    randomHighlight = function() {
+      console.log("randomHighlight");
+      compHover = Math.floor(Math.random() * 9) + 1;
+      lastcompHover = 10;
+      if (document.getElementById(compHover).innerHTML == "&nbsp;" && compHover !== lastcompHover) {
+        document.getElementById(compHover).className = 'compHover';
+        lastcompHover = compHover;
+        setTimeout(function(){
+          document.getElementById(compHover).className = 'slot';
+          highlights--;
+          if (highlights > 0) {
+            randomHighlight();
           } else {
-            compMark = "X";
-          }
+            highlights = emptySlotCounter/2 - (playerWinsCounter/(compWinsCounter+1))/2;
 
-          randomMove = function() {
-            randomSlot = Math.floor(Math.random() * 9) + 1;
-            if ($("#" + randomSlot).html() == "&nbsp;") {
-              $("#" + randomSlot).html(compMark);
-            } else {
-              randomMove();
+            randomMove = function() {
+              console.log("randomMove");
+              randomSlot = Math.floor(Math.random() * 9) + 1;
+              if ($("#" + randomSlot).html() == "&nbsp;") {
+                $("#" + randomSlot).html(compMark);
+                document.getElementById(randomSlot).className = "compSlot";
+              } else {
+                randomMove();
+              }
             }
-          }
-
-          if (difficulty == "Easy") {
-            randomMove();
-          } else if (difficulty == "Medium") {
-            if (Math.floor(Math.random() * 3) == 1) {
+            if (playerWinsCounter/(compWinsCounter+1) > 10) {
+              AI();
+            } else if (Math.floor(Math.random() * playerWinsCounter/(compWinsCounter+1)) < 1) {
               randomMove();
             } else {
               AI();
             }
-          } else {
-            AI();
+            emptySlotCounter -= 1;
+            playerGoesNext = true;
+            playerWentLast = false;
+            winCheck();
+            if (playerGoesNext && !gameOver) {
+              enableMouse();
+            }
           }
-          slotCounter -= 1;
+        },250);
+} else {
+  randomHighlight();
+}
+}
+randomHighlight();
 
-          playerTurn = 1;
-
-          $(".slot").css("background-color", "#f1f3f3");
-          $(".slot:hover").css("background-color", "#ccffff");
-
-          winCheck();
-
-        }, 625);
-      }
-    })
+}
+})

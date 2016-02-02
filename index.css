@@ -7,8 +7,14 @@ body {
 }
 
 #mainDiv {
-	margin: 0% 19% 0% 19%;
+
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100%;
+	max-width: 1000px;
 }
+
 
 a {
 	font-weight: bold;
@@ -16,21 +22,22 @@ a {
 }
 
 .navbar {
-  background-color: #1c1a33;
-  border: 0px;
-  margin: 0px;
+	background-color: #1c1a33;
+	border: 0px;
+	margin: 0px;
+
 }
 ul {
-    list-style-type: none;
-    padding: 0;
-    position: fixed;
+	list-style-type: none;
+	padding: 0;
+	position: fixed;
 
 }
 
 .navbar>li>a {
 	color:  #efeff5;
-    display: block;
-    width: 120%;
+	display: block;
+	width: 120%;
 }
 .navbar>li>a:hover {
 	background-color: gray;
@@ -46,11 +53,12 @@ h1 {
 }
 
 .darkOnLight {
-  color: #1c1a33;
-  background-color: #efeff5;
-  padding: 10px;
-  text-align: justify;
-  min-height: 220px;
+	color: #1c1a33;
+	background-color: #efeff5;
+	padding: 10px;
+	text-align: justify;
+	min-height: 220px;
+
 }
 
 .portfolioImg {
@@ -63,8 +71,8 @@ h1 {
 }
 
 .smallImg {
-  width: 200px;
-  height: 200px;
+	width: 200px;
+	height: 200px;
 }
 
 #me {

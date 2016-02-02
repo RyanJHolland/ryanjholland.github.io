@@ -16,24 +16,17 @@
 <body>
 
   <h1>Tic-Tac-Toe</h1>
-  <form id="XorO">
-    <p style="font-size: 20px;">Play as:</p>
-    <input type="radio" value="X" name="XorO" id="X" checked>X
-    <br>
-    <input type="radio" value="O" name="XorO" id="O">O
-    <br>
-  </form>
-  <br>
-  <form id="Difficulty">
-    <input type="radio" value="Easy" name="Difficulty" id="Easy" checked>Easy
-    <br>
-    <input type="radio" value="Medium" name="Difficulty" id="Medium">Hard
-    <br>
-    <input type="radio" value="Hard" name="Difficulty" id="Hard">Unbeatable
-  </form>
-  <br>
 
-  <h3 id="Record"></h3>
+  <h3 id="Record">
+  Difficulty: 0
+  <br>
+  Your victories: 0
+  <br>
+  Your losses: 0
+  <br>
+  Ties: 0
+  <br>
+  </h3>
 
   <div id="board">
     <div class="slot" id="1" onclick="move(event)">&nbsp;</div>
@@ -46,8 +39,5 @@
     <div class="slot" id="8" onclick="move(event)">&nbsp;</div>
     <div class="slot" id="9" onclick="move(event)">&nbsp;</div>
   </div>
-
-  Whomever lost the last game goes first the next time.
-
 </body>
 </html>

@@ -7,7 +7,7 @@ html {
 body {
   color: #000033;
   background-color: #f1f3f3;
-  font-family: "helvetica";
+  font-family: "Tahoma";
 }
 
 h1 {
@@ -15,67 +15,174 @@ h1 {
 }
 
 h3 {
-  padding-top: 100px;
   font-size: 20px;
-}
-
-#XorO {
-  background-color: #000033;
-  color: #f1f3f3;
-  width: 100px;
-  padding-top: 2px;
-  padding-right: 10px;
-  margin-left: 20%;
-  border-radius: 10px;
-  font-size: 50px;
-  text-align: right;
-  justify-content: auto;
-  position: relative;
-}
-
-#Difficulty {
-  margin-left: 15%;
-  background-color: #000033;
-  color: #f1f3f3;
-  width: 150px;
-  padding-top: 2px;
-  padding-right: 10px;
-  padding-bottom: 2px;
-  border-radius: 10px;
-  font-size: 20px;
-  text-align: left;
-  justify-content: auto;
-  position: relative;
 }
 
 #board {
-  position: absolute;
+  margin: 0 auto;
   width: 300px;
-  top: 100px;
-  left: 50%;
-  margin: 0 0 0 -150px;
+}
+
+
+
+@-webkit-keyframes rotate
+{
+  0% {transform: rotateZ(0deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@-moz-keyframes rotate
+{
+  0% {transform: rotateZ(0deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@-o-keyframes rotate
+{
+  0% {transform: rotateZ(0deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@keyframes rotate
+{
+  0% {transform: rotateZ(0deg);}
+  100% {transform: rotateZ(360deg);}
+}
+
+
+}
+
+@-webkit-keyframes pulse
+{
+  0% {transform: rotateZ(0deg);}
+  50% {transform: rotateZ(180deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@-moz-keyframes pulse
+{
+  0% {transform: rotateZ(0deg);}
+  50% {transform: rotateZ(180deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@-o-keyframes pulse
+{
+  0% {transform: rotateZ(0deg);}
+  50% {transform: rotateZ(180deg);}
+  100% {transform: rotateZ(360deg);}
+}
+@keyframes pulse
+{
+  0% {transform: scale(1);}
+  50% {transform: scale(0.9);}
+  100% {transform: scale(1);}
 }
 
 .slot {
   width: 100px;
   height: 100px;
   float: left;
-  background-color: #f1f3f3;
-  border-radius: 50%;
-  border: 1px solid #000033;
+  background: white;
+  border-radius: 20%;
   font-size: 70px;
   font-weight: bold;
-  -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-  transition:.5s;
-  color: #000033;
+  -o-transition:1.5s;
+  -moz-transition:1.5s;
+  -webkit-transition:1.5s;
+  transition:1.5s;
+  color: white;
 }
 
 .slot:hover {
-   cursor: pointer;
-  cursor: hand;
-  background-color: #ccffff;
-  color: #990033;
+ cursor: pointer;
+ cursor: hand;
+ background: #b3e0ff;
+ color: #b3e0ff;
+}
+
+.compHover {
+  width: 100px;
+  height: 100px;
+  float: left;
+  border-radius: 20%;
+  font-size: 70px;
+  font-weight: bold;
+  -o-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+ background: #ffd9b3;
+ color: #ffd9b3;
+}
+
+.playerSlot {
+  width: 100px;
+  height: 100px;
+  float: left;
+  background: #b3e0ff;
+/*  background: radial-gradient(lightblue, darkblue); */
+  border-radius: 50%;
+  font-size: 70px;
+  font-weight: bold;
+  -o-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s ;
+  color: #0099ff;
+}
+
+.compSlot {
+  width: 100px;
+  height: 100px;
+  float: left;
+  background: #ffd9b3;
+/*  background: radial-gradient(#ffd9b3, #ff9933); */
+  border-radius: 50%;
+  font-size: 70px;
+  font-weight: bold;
+  -o-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s ;
+  color: #ff9933;
+}
+
+.compWin {
+  width: 100px;
+  height: 100px;
+  float: left;
+  background: #ffd9b3;
+  /*
+  background: radial-gradient(#ffd9b3, #ff9933);
+  */
+  border-radius: 50%;
+  font-size: 70px;
+  font-weight: bold;
+  -o-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s ease;
+  color: #ff9933;
+  -webkit-animation: pulse 0.5s ease infinite;
+  -moz-animation: pulse 0.5s ease infinite;
+  -o-animation: pulse 0.5s ease infinite;
+  animation: pulse 0.5s ease infinite;
+}
+
+.playerWin {
+  width: 100px;
+  height: 100px;
+  float: left;
+  background: #b3e0ff;
+  /*
+  background: radial-gradient(lightblue, darkblue);
+  */
+  border-radius: 50%;
+  font-size: 70px;
+  font-weight: bold;
+  -o-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s ease;
+  color: #0099ff;
+  -webkit-animation: rotate 1.0s ease;
+  -moz-animation: rotate 1.0s ease;
+  -o-animation: rotate 1.0s ease;
+  animation: rotate 1.0s ease;
 }
