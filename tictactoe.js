@@ -176,9 +176,7 @@ $(document).ready(function() {
 
       if (emptySlotCounter>=1 && !gameOver) {
         playerGoesNext = false;
-        setTimeout(function(){ //adds a pleasant delay to the comp response
-          compMove();
-        },1000);
+        compMove();
       }
     } else if (playerGoesNext) {
       enableMouse();
