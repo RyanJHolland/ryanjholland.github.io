@@ -87,6 +87,12 @@ h3 {
   -webkit-transition:1.5s;
   transition:1.5s;
   color: white;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .slot:hover {
@@ -94,6 +100,7 @@ h3 {
  cursor: hand;
  background: #b3e0ff;
  color: #b3e0ff;
+
 }
 
 .compHover {
@@ -109,6 +116,13 @@ h3 {
   transition:.5s;
  background: #ffd9b3;
  color: #ffd9b3;
+ -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  cursor:default;
 }
 
 .playerSlot {
@@ -125,6 +139,13 @@ h3 {
   -webkit-transition:.5s;
   transition:.5s ;
   color: #0099ff;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  cursor:default;
 }
 
 .compSlot {
@@ -141,6 +162,13 @@ h3 {
   -webkit-transition:.5s;
   transition:.5s ;
   color: #ff9933;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  cursor:default;
 }
 
 .compWin {
@@ -163,6 +191,13 @@ h3 {
   -moz-animation: pulse 0.5s ease infinite;
   -o-animation: pulse 0.5s ease infinite;
   animation: pulse 0.5s ease infinite;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  cursor:default;
 }
 
 .playerWin {
@@ -185,4 +220,11 @@ h3 {
   -moz-animation: rotate 1.0s ease;
   -o-animation: rotate 1.0s ease;
   animation: rotate 1.0s ease;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  cursor:default;
 }
