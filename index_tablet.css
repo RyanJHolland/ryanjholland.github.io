@@ -1,0 +1,21 @@
+#mainDiv {
+	margin: 0% 0% 0% 0%;
+
+}
+#imgLower {
+	visibility: visible;
+	position: relative;
+}
+#imgUpper {
+	visibility: hidden;
+	position: absolute;
+}
+
+
+.smallImg {
+	width: 50%;
+}
+
+.darkOnLight {
+	 style="text-align:center;"
+}

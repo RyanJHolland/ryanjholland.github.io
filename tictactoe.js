@@ -10,6 +10,8 @@ $(document).ready(function() {
   playerMark = "X";
   compMark = "O";
   gameOver = false;
+  customDifficultyDifference = 0;
+  difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
   chains = [
   ["1", "2", "3"],
   ["4", "5", "6"],
@@ -21,10 +23,23 @@ $(document).ready(function() {
   ["3", "5", "7"]
   ];
 
+  increaseDifficulty = function() {
+    customDifficultyDifference++;
+    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
 
+  }
+
+  decreaseDifficulty = function() {
+    customDifficultyDifference--;
+    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+
+  }
 
   resetBoard = function() {
     console.log("resetBoard");
+    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
     gameOver = false;
     for (var i = 1; i < 10; i++) {
       document.getElementById(i).className = "slot";
@@ -39,7 +54,7 @@ $(document).ready(function() {
       compMove();
     }
     emptySlotCounter = 9;
-    $("#Record").html("Difficulty: " + Math.max((playerWinsCounter/(compWinsCounter+1))) + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
   }
 
   function disableMouse() {
@@ -91,9 +106,17 @@ $(document).ready(function() {
 
     } else if (winner === "O") {
       console.log("comp won");
-      for (var i in winningChain) {
-        document.getElementById(winningChain[i]).className = "compWin";
+
+      function compWinGraphic(arg) {
+        setTimeout(function() {
+          if (arg < 3) {
+            document.getElementById(winningChain[arg]).className = "compWin";
+            compWinGraphic(arg+1);
+          }
+        }, 150);
       }
+      compWinGraphic(0);
+
       playerGoesNext = true;
       compWinsCounter += 1;
 
@@ -131,6 +154,7 @@ $(document).ready(function() {
 
     if (emptySlotCounter == 0 && winnerFound == false) { // a tie
       console.log("tie found");
+      gameOver = true;
       tiesCounter += 1;
 
       // tie wipe animation
@@ -178,7 +202,8 @@ $(document).ready(function() {
         playerGoesNext = false;
         compMove();
       }
-    } else if (playerGoesNext) {
+    } else if (playerGoesNext ) {
+      console.log("move function called enableMouse");
       enableMouse();
     }
   }
@@ -238,7 +263,11 @@ AI = function() {
 
         // Update slot priority list
         for (var slot in chains[chain]) {
-          slotPriorityList[chains[chain][slot]-1] += 1 + chainPriorityList[chain][1];
+          if (difficulty>0) {
+            slotPriorityList[chains[chain][slot]-1] += 1 + chainPriorityList[chain][1];
+          } else {
+            slotPriorityList[chains[chain][slot]-1] -= 1 + chainPriorityList[chain][1];
+          }
         }
       }
 
@@ -284,7 +313,7 @@ AI = function() {
           if (highlights > 0) {
             randomHighlight();
           } else {
-            highlights = emptySlotCounter/2 - (playerWinsCounter/(compWinsCounter+1))/2;
+            highlights = emptySlotCounter/2 - difficulty/2;
 
             randomMove = function() {
               console.log("randomMove");
@@ -296,9 +325,9 @@ AI = function() {
                 randomMove();
               }
             }
-            if (playerWinsCounter/(compWinsCounter+1) > 10) {
+            if (difficulty > 10) {
               AI();
-            } else if (Math.floor(Math.random() * playerWinsCounter/(compWinsCounter+1)) < 1) {
+            } else if (Math.floor(Math.random() * difficulty) < 1) {
               randomMove();
             } else {
               AI();
@@ -308,6 +337,7 @@ AI = function() {
             playerWentLast = false;
             winCheck();
             if (playerGoesNext && !gameOver) {
+      console.log("compMove function called enableMouse");
               enableMouse();
             }
           }

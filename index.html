@@ -10,135 +10,132 @@
 	<meta name="Copyright" content="Ryan Holland" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-	<link href="index.css" rel="stylesheet">
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="index_tablet.css" media="screen and (max-width: 1250px)">
+	<link rel="stylesheet" href="index_mobile.css" media="screen and (max-width: 500px)">
+	<script src="jquery-1.12.0.min.js"></script>
 </head>
 
 <body>
-
-	<nav id="name" role="navigation">
-		<ul class="navbar">
-			<li>
-				<a href="#name">Name</a>
-			</li>
-			<li>
-				<a href="#portfolio">Portfolio</a>
-			</li>
-			<li>
-				<a href="#about">About</a>
-			</li>
-			<li>
-				<a href="#contact">Contact</a>
-			</li>
-		</ul>
-	</nav>
-
+	
 	<div id="mainDiv">
 
 		<br><br><br>
 		<h1 class="center">Ryan Holland</h1>
 		<h2 class="center">Web Developer</h2>
+		<br><br><br><br><br><br><br><br><br><br>
+		<nav role="navigation">
+			<h2 class="navBar">
+				<a href="#portfolio"><span id="portfolioTab">Portfolio</span></a>
+				<a href="#about"><span id="aboutLink">About Me</span></a>
+				<a href="#contact"><span id="contactLink">Contact</span></a>
+			</h2>
+		</nav>
+		<div class="darkOnLight" id="portfolio">
+
+			<div id="imgUpper">
+				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
+					<img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/>
+				</a>
+			</div>
+
+			<h2>I made a <a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a> that filters every page you visit to block spoilers from movies, TV, or sports.</h2>
+			<div id="imgLower">
+				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
+					<img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/>
+				</a>
+			</div>
+			You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
+			<br><br>
+			There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
+			<br><br>
+
+			It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
+			<br><br>
+			I really enjoyed making this, because it was my own idea rather than a challenge, and because it is something I (and hopefully others) would actually use. It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
+			<br><br>
+			<a href="https://github.com/RyanJHolland/Spoiler-Blocker">See code on Github</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight">
+			<a href="tictactoe.html"><img class="portfolioImg smallImg" align="right" src="tictactoe.png"/></a>
+			<h2><a href="tictactoe.html">Tic-Tac-Toe</a></h2>
+			The computer AI begins by moving randomly, but makes smarter decisions as difficulty increases, until the best outcome you can hope for is a tie. Difficulty increases as you win games, or you can change it manually. I used a lot of CSS and JS.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/LpvmER">See code on Codepen</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight">
+			<a href="simon.html"><img class="portfolioImg smallImg" align="right" src="simon.png"/></a>
+			<h2><a href="simon.html">"Simon" game</a></h2>
+			It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/ZbdBNK">See code on Codepen</a>
+			<br>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight">
+			<a href="searcher.html"><img class="portfolioImg smallImg" align="right" src="searcher.png"/></a>
+			<h2>I made a <a href="searcher.html">Wikipedia searcher</a>.</h2>
+			It uses the Wikipedia API to search for articles matching whatever the user types into the search box, updating as they type, letter-by-letter, like Google Search's Auto-Complete function. I used JQuery.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/jbdpoj">See code on Codepen</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight">
+
+			<h2>Other projects:</h2>
+			<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
+			<br><br>
+			<a href="calculator.html">A calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
+			<br><br>
+			<a href="weather.html">Local weather viewer</a>, using the HTML5 feature of getting the user's location, and a weather API.
+			<br><br>
+			<a href="twitch.html">Twitch stream status viewer</a>, which uses an API to show whether a list of streamers are online. This was the first project where I had to use callbacks and wrangle with the asynchronous nature of JavaScript.
+			<br><br>
+			<a href="pomodoro.html">Pomodoro timer</a>, a countdown that tells you when it's time to chillax and when it's time to workax.
+			<br><br>
+			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
+			<br><br>
+			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page (mostly from scratch, with some .
+
+		</div>
+
 		<br><br><br>
 
-		<h2 id="portfolio">
+		<h2 id="about">About Me</h2>
+		<div class="darkOnLight">
+			<div>
+				<img class="portfolioImg" align="right" src="me.jpg"/>
+			</div>
+			I grew up on computers because my dad is a programmer (and mom is a graphic designer), but I focused on art and music, perhaps as a form of rebellion against the family trade.
 			<br><br>
-			Portfolio</h2>
+			I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career..
+			<br<br><br><br>
+			I have worked as an art teacher, guitar tutor, waiter, and bartender. My hobbies include reading, jamming with friends, hiking, and gaming. I am interested in a junior dev position or apprenticeship.
+		</div>
 
-			<div class="darkOnLight">
-				<div>
-					<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd"><img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/></a>
-				</div>
-				<h2>I made a <a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a> that filters every page you visit to block spoilers from movies, TV, or sports.</h2>
-				You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
-				<br><br>
-				There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
-				<br><br>
-				It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
-				<br><br>
-				I really enjoyed making this, because it was my own idea rather than a challenge, and because it is something I (and hopefully others) would actually use. It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
-				<br><br>
-				<a href="https://github.com/RyanJHolland/Spoiler-Blocker">See code on Github</a>
-				<br><br>
-			</div>
+		<br><br><br>
 
-			<br>
-
-			<div class="darkOnLight">
-				<a href="simon.html"><img class="portfolioImg smallImg" align="right" src="simon.png"/></a>
-				<h2>I made a <a href="simon.html">"Simon" game</a>.</h2>
-				It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
-				<br><br>
-				<a href="http://codepen.io/RyanJHolland/pen/ZbdBNK">See code on Codepen</a>
-				<br>
-			</div>
-
-			<br>
-
-			<div class="darkOnLight">
-				<a href="tictactoe.html"><img class="portfolioImg smallImg" align="right" src="tictactoe.png"/></a>
-				<h2>I made a <a href="tictactoe.html">Tic-Tac-Toe game</a>.</h2>
-				You can play at three difficulties: Easy, Hard, and Unbeatable (where the best you can hope for is a tie.) You can also cheat, though, by swapping tokens with the computer. I used Bootstrap and Jquery.
-				<br><br>
-				<a href="http://codepen.io/RyanJHolland/pen/LpvmER">See code on Codepen</a>
-				<br><br>
-			</div>
-
-			<br>
-
-			<div class="darkOnLight">
-				<a href="searcher.html"><img class="portfolioImg smallImg" align="right" src="searcher.png"/></a>
-				<h2>I made a <a href="searcher.html">Wikipedia searcher</a>.</h2>
-				It uses the Wikipedia API to search for articles matching whatever the user types into the search box, updating as they type, letter-by-letter, like Google Search's Auto-Complete function. I used JQuery.
-				<br><br>
-				<a href="http://codepen.io/RyanJHolland/pen/jbdpoj">See code on Codepen</a>
-				<br><br>
-			</div>
-
-			<br>
-
-			<div class="darkOnLight">
-
-				<h2>Other projects:</h2>
-				<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
-				<br><br>
-				<a href="calculator.html">A calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
-				<br><br>
-				<a href="weather.html">Local weather viewer</a>, using the HTML5 feature of getting the user's location, and a weather API.
-				<br><br>
-				<a href="twitch.html">Twitch stream status viewer</a>, which uses an API to show whether a list of streamers are online. This was the first project where I had to use callbacks and wrangle with the asynchronous nature of JavaScript.
-				<br><br>
-				<a href="pomodoro.html">Pomodoro timer</a>, a countdown that tells you when it's time to chillax and when it's time to workax.
-				<br><br>
-				<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
-				<br><br>
-				I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this website from scratch.
-				<span id="about"></span>
-
-			</div>
-
-			<br><br><br>
-
-			<h2>About Me</h2>
-			<div class="darkOnLight">
-				<div>
-					<img id="me" align="right" src="me.jpg"/>
-				</div>
-				I grew up on computers because my dad is a programmer (and mom is a graphic designer), but I focused on art and music, perhaps as a form of rebellion against the family trade. I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career..
-				<br<br><br><br>
-				I have worked as an art teacher, guitar tutor, waiter, and bartender. My hobbies include reading, jamming with friends, hiking, and walking the dog. I am interested in a junior dev position or apprenticeship.
-			</div>
-
-			<br><br><br>
-
-			<h2 id="contact">Contact</h2>
+		<h2 id="contact">Contact</h2>
+		<div class="darkOnLight">
 			<br>
 			<div id="contactData">
-				RyanHolland1987@Gmail.com
+				<a href="mailto:ryanholland1987@gmail.com">RyanHolland1987@Gmail.com</a>
 				<br><br>
-				713.516.7730
 			</div>
 			<br>
 			Houston, Texas
 			<br><br>
+		</div>
 	<!--
 	<script>
 			//because email trawlers probably won't read JavaScript:
@@ -155,10 +152,38 @@
 	<a href="https://www.linkedin.com/in/ryan-holland-073779100"><img class="contactImg" src="linkedin.png"/></a>   
 	<a title="@ryanjholland's GitHub Profile" href="https://github.com/RyanJHolland" target="_blank"><img class="contactImg" src="github.png"/></a></h2>
 -->
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 </div>
 
+
+<script>
+    var pageSections = ["#portfolio", "#about", "#contact"];
+$(window).scroll(function(){
+   var fromTop = $(this).scrollTop();
+   var passed = [];
+   var inactive = [];
+   for (var i in pageSections) {
+     if ($(pageSections[i]).offset().top < fromTop+300) {
+       passed.push(pageSections[i]);
+     } else {
+     	$(pageSections[i]).removeClass("activeTab");
+     	$(pageSections[i] + "Div").removeClass("activeDiv");
+     }
+   };
+   current = passed[passed.length-1];
+   $(current).addClass("activeTab");
+   $(current + "Div").addClass("activeDiv");
+   // Set/remove active class
+/*
+
+   menuItems
+     .parent().removeClass("active")
+     .end().filter("[href=#"+id+"]").parent().addClass("active");
+     */
+
+});
+</script>
 </body>
 
 </html>
