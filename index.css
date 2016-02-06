@@ -70,6 +70,7 @@ body {
 a {
 	font-weight: bold;
 	text-decoration: none;
+	cursor: pointer; cursor: hand;
 }
 
 #imgLower {
@@ -139,6 +140,23 @@ h2 {
 }
 
 
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1, 1);}
+    50% {-webkit-transform: scale(1.2, 1.2);}
+    100% {-webkit-transform: scale(1, 1);}
+}
+
+#downArrow {
+  -webkit-animation: pulsate 1s ease;
+    -webkit-animation-iteration-count: infinite; 
+    background-color: gray;
+    padding: 10px;
+        border-radius: 50%;
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
 
 
 .portfolioImg {
