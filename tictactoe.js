@@ -23,6 +23,11 @@ $(document).ready(function() {
   ["3", "5", "7"]
   ];
 
+  var sound1 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3");
+  var sound2 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3");
+  var sound3 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3");
+  var sound4 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
+
   increaseDifficulty = function() {
     customDifficultyDifference++;
     difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
@@ -93,6 +98,7 @@ $(document).ready(function() {
     gameOver = true;
     
     if (winner === "X") {
+        sound4.cloneNode(true).play();
       console.log("player won");
       for (var i in winningChain) {
         document.getElementById(winningChain[i]).className = "playerWin";
@@ -112,6 +118,7 @@ $(document).ready(function() {
           if (arg < 3) {
             document.getElementById(winningChain[arg]).className = "compWin";
             compWinGraphic(arg+1);
+            sound3.cloneNode(true).play();
           }
         }, 150);
       }
@@ -193,6 +200,7 @@ $(document).ready(function() {
     if (mark == "&nbsp;" && playerGoesNext) {
       document.getElementById(eventTarget.id).innerHTML = playerMark;
       document.getElementById(eventTarget.id).className = "playerSlot";
+      sound1.cloneNode(true).play();
 
       emptySlotCounter -= 1;
       playerWentLast = true;
@@ -283,6 +291,7 @@ AI = function() {
         if (document.getElementById(bestSlot).innerHTML == "&nbsp;") {
           document.getElementById(bestSlot).innerHTML = compMark;
           document.getElementById(bestSlot).className = "compSlot";
+          sound2.cloneNode(true).play();
           compMovedAlready = true; 
         } else {
           slotPriorityList[bestSlot - 1 ] = 0;
@@ -321,6 +330,7 @@ AI = function() {
               if ($("#" + randomSlot).html() == "&nbsp;") {
                 $("#" + randomSlot).html(compMark);
                 document.getElementById(randomSlot).className = "compSlot";
+                sound2.cloneNode(true).play();
               } else {
                 randomMove();
               }

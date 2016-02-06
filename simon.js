@@ -91,30 +91,21 @@ $(document).ready(function() {
     sound1.cloneNode(true).play();
     $("#btn1").css("background-color", "white");
     setTimeout(function() {
-      $("#btn1").css("background-color", "lightgreen");
-    }, 35);
-    setTimeout(function() {
       $("#btn1").css("background-color", "green");
-    }, 100);
+    }, 225);
   };
 
   triggerB2 = function() {
     sound2.cloneNode(true).play();
     $("#btn2").css("background-color", "white");
     setTimeout(function() {
-      $("#btn2").css("background-color", "pink");
-    }, 35);
-    setTimeout(function() {
       $("#btn2").css("background-color", "red");
-    }, 100);
+    }, 225);
   };
 
   triggerB3 = function() {
     sound3.cloneNode(true).play();
     $("#btn3").css("background-color", "white");
-    setTimeout(function() {
-      $("#btn3").css("background-color", "violet");
-    }, 35);
     setTimeout(function() {
       $("#btn3").css("background-color", "purple");
     }, 225);
@@ -124,9 +115,6 @@ $(document).ready(function() {
     sound4.cloneNode(true).play();
     $("#btn4").css("background-color", "white");
     setTimeout(function() {
-      $("#btn4").css("background-color", "cyan");
-    }, 35);
-    setTimeout(function() {
       $("#btn4").css("background-color", "blue");
     }, 225);
   };
@@ -134,6 +122,7 @@ $(document).ready(function() {
   roundsCounter = 0;
 
   $("#start").click(function() {
+
     if (roundsCounter === 20) {
       alert("You win!");
       $("#restart").click();
@@ -141,7 +130,7 @@ $(document).ready(function() {
       lockButtons();
       setTimeout(function() {
         compTurn();
-      }, 800);
+      }, 600);
       roundsCounter++;
       $("#start").hide();
       $("#restart").show();
@@ -176,26 +165,26 @@ $(document).ready(function() {
       if (roundsCounter <= 4) {
         setTimeout(function() {
           showSequence();
-        }, 1200);
+        }, 1000);
       } else if (5 <= roundsCounter <= 8) {
         setTimeout(function() {
           showSequence();
-        }, 1000);
+        }, 800);
       } else if (8 <= roundsCounter <= 11) {
         setTimeout(function() {
           showSequence();
-        }, 800);
+        }, 600);
       } else if (12 <= roundsCounter) {
         setTimeout(function() {
           showSequence();
-        }, 600);
+        }, 400);
       }
     }
 
     if (counter === sequence.length) {
       setTimeout(function() {
         unlockButtons();
-      }, 500);
+      }, 300);
     }
   }
 

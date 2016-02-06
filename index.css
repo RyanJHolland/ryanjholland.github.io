@@ -4,76 +4,66 @@ body {
 	font-size: 16px;
 	text-align: left;
 	font-family: 'Raleway', 'Tahoma';
-	-webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 3s; /* Firefox < 16 */
-        -ms-animation: fadein 3s; /* Internet Explorer */
-         -o-animation: fadein 3s; /* Opera < 12.1 */
-            animation: fadein 3s;
 }
 
 #mainDiv {
 	margin: 0% 19% 0% 19%;
 }
 
-.activeTab {
-	background-color: red;
-	transition: 0.5s;
-	visibility: visible;
+.darkOnLight {
+	color: #1c1a33;
+	background-color: #efeff5;
+	padding: 10px;
+	text-align: justify;
+	overflow:hidden;
+	transition: 1s;
+	opacity: 0;
+	display: hidden;
+	transform: translate(0px, 100px);
 }
 
-.activeDiv {
-	visibility: visible;
-	transition: 0.5s;
+#portfolio5Div > a {
+	 display: inline-block !important;
 }
 
-.navBar {
+.header {
+	color: #efeff5;
+	overflow:hidden;
+	transition: 1s;
+	opacity: 0;
+	display: hidden;
+	transform: translate(0px, 100px);
+}
+
+.active, .active > * {
+	transition: 1s;
+	opacity: 1;
+	display: block;
+	transform: translate(0px, 0px);
+}
+
+#navBar {
 	border: 0px;
 	margin: 0px;
 	color:  #efeff5;
 	text-align: center;
 }
 
-#portfolio, #portfolio:visited {
+.navLink, .navLink:visited {
 	padding: 0px 10px 0px 10px;
-	color: #efeff5;
+	color: #efeff5 !important;
 	transition: 0.5s;
 }
-#portfolio:hover {
-	color: black;
-	background-color: lightgray;
-	transition: 0.5s;
-}
-#portfolio:active {
-	background-color: #efeff5;
-	transition: 0.5s;
+.navLink:hover {
+	background-color: red;
 }
 
-#aboutLink, #aboutLink:visited {
-	padding: 0px 10px 0px 10px;
-	color: #efeff5;
-	transition: 0.5s;
-}
-#aboutLink:hover {
-	color: white;
-	background-color: gray;
-	transition: 0.5s;
-}
 
-#contactLink, #contactLink:visited {
-	padding: 0px 10px 0px 10px;
-	color: #efeff5;
-	transition: 0.5s;
-}
-#contactLink:hover {
-	color: black;
-	background-color: lightgray;
-	transition: 0.5s;
-}
 
-#about {
+.aboutDiv {
 	margin-bottom: 0px;
 }
-#contact {
+.contactDiv {
 	margin-bottom: 0px;
 }
 
@@ -95,6 +85,10 @@ a {
 	text-align: center;
 }
 
+#contactDiv {
+	text-align: center;
+}
+
 h1 {
 	font-size: 55px;
 	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
@@ -105,6 +99,7 @@ h1 {
 }
 
 h2 {
+	text-align: center;
 	font-size: 25px;
 	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -112,6 +107,7 @@ h2 {
          -o-animation: fadein 1s; /* Opera < 12.1 */
             animation: fadein 1s;
 }
+
 
 @keyframes fadein {
     from { opacity: 0; }
@@ -143,15 +139,7 @@ h2 {
 }
 
 
-.darkOnLight {
-	color: #1c1a33;
-	background-color: #efeff5;
-	padding: 10px;
-	text-align: justify;
-	overflow:hidden;
-	transition: 0.5s;
-	visibility: hidden;
-}
+
 
 .portfolioImg {
 	border: 1px solid #3399ff;
@@ -164,6 +152,7 @@ h2 {
 
 .smallImg {
 	width: 20%;
+	margin-left: 10px;
 }
 
 .contactImg {

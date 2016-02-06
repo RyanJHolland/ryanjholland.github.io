@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="index.css">
 	<link rel="stylesheet" href="index_tablet.css" media="screen and (max-width: 1250px)">
 	<link rel="stylesheet" href="index_mobile.css" media="screen and (max-width: 500px)">
-	<script src="jquery-1.12.0.min.js"></script>
 </head>
 
 <body>
@@ -23,16 +22,18 @@
 		<br><br><br>
 		<h1 class="center">Ryan Holland</h1>
 		<h2 class="center">Web Developer</h2>
-		<br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br>
+		<br><br>
 		<nav role="navigation">
-			<h2 class="navBar">
-				<a href="#portfolio"><span id="portfolioTab">Portfolio</span></a>
-				<a href="#about"><span id="aboutLink">About Me</span></a>
-				<a href="#contact"><span id="contactLink">Contact</span></a>
+			<h2 id="navBar">
+				<a onclick="smoothScroll(portfolioAnchor)" class="navLink" id="portfolioHeader" style="display:inline;">Portfolio</a>
+				<a onclick="smoothScroll(aboutAnchor)"><span class="navLink">About Me</span></a>
+				<a onclick="smoothScroll(contactAnchor)"><span class="navLink">Contact</span></a>
 			</h2>
 		</nav>
-		<div class="darkOnLight" id="portfolio">
+		<div class="darkOnLight" id="portfolio1Div">
 
+		<span id="portfolioAnchor"></span>
 			<div id="imgUpper">
 				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
 					<img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/>
@@ -50,7 +51,7 @@
 			There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
 			<br><br>
 
-			It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
+			It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active Header and causes no detecHeaderle drop in performance.
 			<br><br>
 			I really enjoyed making this, because it was my own idea rather than a challenge, and because it is something I (and hopefully others) would actually use. It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
 			<br><br>
@@ -59,7 +60,7 @@
 
 		<br>
 
-		<div class="darkOnLight">
+		<div class="darkOnLight" id="portfolio2Div">
 			<a href="tictactoe.html"><img class="portfolioImg smallImg" align="right" src="tictactoe.png"/></a>
 			<h2><a href="tictactoe.html">Tic-Tac-Toe</a></h2>
 			The computer AI begins by moving randomly, but makes smarter decisions as difficulty increases, until the best outcome you can hope for is a tie. Difficulty increases as you win games, or you can change it manually. I used a lot of CSS and JS.
@@ -69,7 +70,7 @@
 
 		<br>
 
-		<div class="darkOnLight">
+		<div class="darkOnLight" id="portfolio3Div">
 			<a href="simon.html"><img class="portfolioImg smallImg" align="right" src="simon.png"/></a>
 			<h2><a href="simon.html">"Simon" game</a></h2>
 			It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
@@ -80,9 +81,9 @@
 
 		<br>
 
-		<div class="darkOnLight">
+		<div class="darkOnLight" id="portfolio4Div">
 			<a href="searcher.html"><img class="portfolioImg smallImg" align="right" src="searcher.png"/></a>
-			<h2>I made a <a href="searcher.html">Wikipedia searcher</a>.</h2>
+			<h2><a href="searcher.html">Wikipedia searcher</a></h2>
 			It uses the Wikipedia API to search for articles matching whatever the user types into the search box, updating as they type, letter-by-letter, like Google Search's Auto-Complete function. I used JQuery.
 			<br><br>
 			<a href="http://codepen.io/RyanJHolland/pen/jbdpoj">See code on Codepen</a>
@@ -90,7 +91,7 @@
 
 		<br>
 
-		<div class="darkOnLight">
+		<div class="darkOnLight" id="portfolio5Div">
 
 			<h2>Other projects:</h2>
 			<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
@@ -105,28 +106,26 @@
 			<br><br>
 			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
 			<br><br>
-			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page (mostly from scratch, with some .
+			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2... Well, everything except the script for smooth-scrolling-without-JQuery.
 
 		</div>
-
+		
 		<br><br><br>
-
-		<h2 id="about">About Me</h2>
-		<div class="darkOnLight">
-			<div>
-				<img class="portfolioImg" align="right" src="me.jpg"/>
-			</div>
+		
+		<h2 class="header" id="aboutHeader" href="#aboutHeader">About Me</h2>
+		<div class="darkOnLight" id="aboutDiv"><span id="aboutAnchor"></span>
+			<img class="smallImg" align="right" src="me.jpg"/>
 			I grew up on computers because my dad is a programmer (and mom is a graphic designer), but I focused on art and music, perhaps as a form of rebellion against the family trade.
 			<br><br>
-			I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career..
+			I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career.
 			<br<br><br><br>
 			I have worked as an art teacher, guitar tutor, waiter, and bartender. My hobbies include reading, jamming with friends, hiking, and gaming. I am interested in a junior dev position or apprenticeship.
 		</div>
-
 		<br><br><br>
 
-		<h2 id="contact">Contact</h2>
-		<div class="darkOnLight">
+		<h2 class="header" id="contactHeader" href="#contactHeader">Contact</h2>
+
+		<div class="darkOnLight" id="contactDiv">
 			<br>
 			<div id="contactData">
 				<a href="mailto:ryanholland1987@gmail.com">RyanHolland1987@Gmail.com</a>
@@ -157,32 +156,60 @@
 </div>
 
 
+<span id="contactAnchor"></span>
 <script>
-    var pageSections = ["#portfolio", "#about", "#contact"];
-$(window).scroll(function(){
-   var fromTop = $(this).scrollTop();
-   var passed = [];
-   var inactive = [];
-   for (var i in pageSections) {
-     if ($(pageSections[i]).offset().top < fromTop+300) {
-       passed.push(pageSections[i]);
-     } else {
-     	$(pageSections[i]).removeClass("activeTab");
-     	$(pageSections[i] + "Div").removeClass("activeDiv");
-     }
-   };
-   current = passed[passed.length-1];
-   $(current).addClass("activeTab");
-   $(current + "Div").addClass("activeDiv");
-   // Set/remove active class
-/*
 
-   menuItems
-     .parent().removeClass("active")
-     .end().filter("[href=#"+id+"]").parent().addClass("active");
-     */
+// I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
+var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
 
-});
+window.addEventListener("scroll", function(){
+	
+		// finds distance of visible window from the actual top of the page:
+		var scrollTop = (window.pageYOffset !== undefined) ?
+		window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+		
+		var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		
+		// checks whether we have scrolled past each section yet:
+		for (var i in pageSections) {
+			if (document.getElementById(pageSections[i]).getBoundingClientRect().top +
+				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight) {
+				
+				if (document.getElementById(pageSections[i]) != null && !document.getElementById(pageSections[i]).classList.contains("active")) {
+					document.getElementById(pageSections[i]).classList.add("active");
+				}
+			} else {
+				// if not, make it inactive if it is active:
+				if (document.getElementById(pageSections[i]) != null && document.getElementById(pageSections[i]).classList.contains("active")) {
+					document.getElementById(pageSections[i]).classList.remove("active");
+				}
+			}
+		};
+	});
+
+// full disclosure: I didn't write the code below
+window.smoothScroll = function(target) {
+	var scrollContainer = target;
+    do { //find scroll container
+    	scrollContainer = scrollContainer.parentNode;
+    	if (!scrollContainer) return;
+    	scrollContainer.scrollTop += 1;
+    } while (scrollContainer.scrollTop == 0);
+
+    var targetY = 0;
+    do { //find the top of target relatively to the container
+    	if (target == scrollContainer) break;
+    	targetY += target.offsetTop;
+    } while (target = target.offsetParent);
+
+    scroll = function(c, a, b, i) {
+    	i++; if (i > 30) return;
+    	c.scrollTop = a + (b - a) / 30 * i;
+    	setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    }
+    // start scrolling
+    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+}
 </script>
 </body>
 

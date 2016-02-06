@@ -3,17 +3,17 @@
 
 }
 #imgLower {
-	visibility: visible;
+	display: inline;
 	position: relative;
 }
 #imgUpper {
-	visibility: hidden;
+	display: none;
 	position: absolute;
 }
 
 
 .smallImg {
-	width: 50%;
+	width: 30%;
 }
 
 .darkOnLight {

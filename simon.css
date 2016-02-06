@@ -11,15 +11,36 @@ body {
   color: white;
 }
 
+.col-md-1 {
+  width: 100px;
+  height: 100px;
+}
+
 button {
-  width: 95%;
+  width: 93%;
   height: 90px;
-  border: 0px;
+  border: 5px outset;
+  transition: 0.5s;
+}
+button:active {
+  transform: translate(2px, 2px);
+  transform: scale(.9, .9);
 }
 
 #restart {
   display: hidden;
   position: absolute;
+}
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1, 1);}
+    50% {-webkit-transform: scale(1.2, 1.2);}
+    100% {-webkit-transform: scale(1, 1);}
+}
+
+#start {
+  -webkit-animation: pulsate 1s ease;
+    -webkit-animation-iteration-count: infinite; 
 }
 
 #start,
