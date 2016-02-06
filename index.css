@@ -10,6 +10,8 @@ body {
 	margin: 0% 30% 0% 30%;
 }
 
+
+
 .darkOnLight {
 	color: #1c1a33;
 	background-color: #efeff5;
@@ -42,12 +44,14 @@ body {
 	transform: translate(0px, 0px);
 }
 
+/*
 #navBar {
 	border: 0px;
 	margin: 0px;
 	color:  #efeff5;
 	text-align: center;
 }
+*/
 
 .navLink, .navLink:visited {
 	padding: 0px 10px 0px 10px;
@@ -146,7 +150,7 @@ h2 {
     50% {-webkit-transform: scale(1.2, 1.2);}
     100% {-webkit-transform: scale(1, 1);}
 }
-
+/*
 #downArrow {
   -webkit-animation: pulsate 1s ease;
     -webkit-animation-iteration-count: infinite; 
@@ -157,6 +161,7 @@ h2 {
     display: inline-block;
     text-align: center;
 }
+*/
 
 
 .portfolioImg {

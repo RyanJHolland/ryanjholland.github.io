@@ -107,7 +107,7 @@
 			<br><br>
 			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
 			<br><br>
-			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2... Well, everything except the script for smooth-scrolling-without-JQuery.
+			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2... Well, everything except the script for smooth-scrolling-without-JQuery. I am familiar with the basics of SEO/Internet marketing, animation (2d and 3d), math, and writing.
 
 		</div>
 		
@@ -162,6 +162,8 @@
 // I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
 var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
 
+//var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
+
 window.addEventListener("scroll", function(){
 	
 		// finds distance of visible window from the actual top of the page:
@@ -172,6 +174,7 @@ window.addEventListener("scroll", function(){
 		
 		// checks whether we have scrolled past each section yet:
 		for (var i in pageSections) {
+			
 			if (document.getElementById(pageSections[i]).getBoundingClientRect().top +
 				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight) {
 				
@@ -184,6 +187,14 @@ window.addEventListener("scroll", function(){
 					document.getElementById(pageSections[i]).classList.remove("active");
 				}
 			}
+			/*
+			console.log(initialNavBar + " | " + scrollTop);
+			if (scrollTop > initialNavBar) {
+				document.getElementById("navBar").classList.add("header");
+			} else {
+				document.getElementById("navBar").classList.remove("header");
+			}
+			*/
 		};
 	});
 
