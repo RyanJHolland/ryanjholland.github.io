@@ -168,16 +168,19 @@ h2 {
 	border: 1px solid #3399ff;
 	width: 50%;
 	margin-left: 10px;
+	float: right;
 }
 .portfolioImg:hover {
 	border: 1px solid #003399;
 }
 
 .smallImg {
+	float: right;
 	width: 20%;
 	margin-left: 10px;
 }
 
 .contactImg {
+	float: right;
 	height: 50px;
 }

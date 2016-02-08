@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<title>Ryan Holland's Portfolio</title>
 	<meta name="description" content="Ryan Holland's Portfolio, Houston, Texas Web designer, programmer, javascript, html5, css3" />
 	<meta name="author" content="Ryan Holland" />
@@ -24,7 +24,7 @@
 		<h2 class="center">Web Developer</h2>
 		<br><br><br><br><br><br><br><br>
 		<br><br>
-		<nav role="navigation">
+		<nav>
 			<h2 id="navBar">
 				<a onclick="smoothScroll(portfolioAnchor)" class="navLink" id="portfolioHeader" style="display:inline;">Portfolio</a>
 				<a onclick="smoothScroll(aboutAnchor)"><span class="navLink">About Me</span></a>
@@ -37,14 +37,14 @@
 		<span id="portfolioAnchor"></span>
 			<div id="imgUpper">
 				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
-					<img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/>
+					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
 				</a>
 			</div>
 
 			<h2>I made a <a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a> that filters every page you visit to block spoilers from movies, TV, or sports.</h2>
 			<div id="imgLower">
 				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
-					<img class="portfolioImg" align="right" src="spoilerBlockerScreenshot.png"/>
+					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
 				</a>
 			</div>
 			You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
@@ -62,7 +62,7 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio2Div">
-			<a href="tictactoe.html"><img class="portfolioImg smallImg" align="right" src="tictactoe.png"/></a>
+			<a href="tictactoe.html"><img alt="tic-tac-toe screenshot" class="portfolioImg smallImg" src="tictactoe.png"/></a>
 			<h2><a href="tictactoe.html">Tic-Tac-Toe</a></h2>
 			The computer AI begins by moving randomly, but makes smarter decisions as difficulty increases, until the best outcome you can hope for is a tie. Difficulty increases as you win games, or you can change it manually. I used a lot of CSS and JS.
 			<br><br>
@@ -72,7 +72,7 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio3Div">
-			<a href="simon.html"><img class="portfolioImg smallImg" align="right" src="simon.png"/></a>
+			<a href="simon.html"><img alt="Simon screenshot" class="portfolioImg smallImg" src="simon.png"/></a>
 			<h2><a href="simon.html">"Simon" game</a></h2>
 			It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
 			<br><br>
@@ -83,7 +83,7 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio4Div">
-			<a href="searcher.html"><img class="portfolioImg smallImg" align="right" src="searcher.png"/></a>
+			<a href="searcher.html"><img alt="Wiki searcher screenshot" class="portfolioImg smallImg" src="searcher.png"/></a>
 			<h2><a href="searcher.html">Wikipedia searcher</a></h2>
 			It uses the Wikipedia API to search for articles matching whatever the user types into the search box, updating as they type, letter-by-letter, like Google Search's Auto-Complete function. I used JQuery.
 			<br><br>
@@ -113,22 +113,23 @@
 		
 		<br><br><br>
 		
-		<h2 class="header" id="aboutHeader" href="#aboutHeader">About Me</h2>
+		<a href="#aboutHeader"><h2 class="header" id="aboutHeader">About Me</h2></a>
 		<div class="darkOnLight" id="aboutDiv"><span id="aboutAnchor"></span>
-			<img class="smallImg" align="right" src="me.jpg"/>
+			<img alt="the handsomest man" class="smallImg" src="me.jpg"/>
 			I grew up on computers because my dad is a programmer (and mom is a graphic designer), but I focused on art and music, perhaps as a form of rebellion against the family trade.
 			<br><br>
 			I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career.
-			<br<br><br><br>
+			<br><br><br><br>
 			I have worked as an art teacher, guitar tutor, waiter, and bartender. My hobbies include reading, jamming with friends, hiking, and gaming.
 			<br><br>
 			I am familiar with the basics of SEO/Internet marketing, animation (2d and 3d), Flash, and Photoshop.
 			<br><br>
 			I am interested in a junior dev position, apprenticeship, or internship.
 		</div>
+
 		<br><br><br>
 
-		<h2 class="header" id="contactHeader" href="#contactHeader">Contact</h2>
+		<a href="#contactHeader"><h2 class="header" id="contactHeader">Contact</h2></a>
 
 		<div class="darkOnLight" id="contactDiv">
 			<br>
@@ -153,8 +154,8 @@
 			data += "6.7730";
 			document.getElementById('contactData').innerText = data;
 		</script>
-	<a href="https://www.linkedin.com/in/ryan-holland-073779100"><img class="contactImg" src="linkedin.png"/></a>   
-	<a title="@ryanjholland's GitHub Profile" href="https://github.com/RyanJHolland" target="_blank"><img class="contactImg" src="github.png"/></a></h2>
+	<a href="https://www.linkedin.com/in/ryan-holland-073779100"><img alt="linkedin" class="contactImg" src="linkedin.png"/></a>   
+	<a title="@ryanjholland's GitHub Profile" href="https://github.com/RyanJHolland" target="_blank"><img alt="github" class="contactImg" src="github.png"/></a></h2>
 -->
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
