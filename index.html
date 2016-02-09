@@ -32,6 +32,9 @@
 				<br>
 			</h2>
 		</nav>
+		
+		<img id="downArrow" src="down_arrow.svg" />
+
 		<div class="darkOnLight" id="portfolio1Div">
 
 		<span id="portfolioAnchor"></span>
@@ -107,7 +110,7 @@
 			<br><br>
 			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
 			<br><br>
-			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2... Well, everything except the script for smooth-scrolling-without-JQuery.
+			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2.
 
 		</div>
 		
@@ -169,7 +172,12 @@ var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfo
 
 //var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
 
+var downArrow = true;
 window.addEventListener("scroll", function(){
+
+		if (downArrow) {
+			document.getElementById("downArrow").style.visibility = "hidden";
+		}
 	
 		// finds distance of visible window from the actual top of the page:
 		var scrollTop = (window.pageYOffset !== undefined) ?
@@ -203,7 +211,7 @@ window.addEventListener("scroll", function(){
 		};
 	});
 
-// full disclosure: I didn't write the code below
+// full disclosure: I didn't write the code below. Usually this would be done with JQuery, but I wanted the page to load more quickly, so I didn't want to load JQuery since it's a big library and this page is pretty simple.
 window.smoothScroll = function(target) {
 	var scrollContainer = target;
     do { //find scroll container

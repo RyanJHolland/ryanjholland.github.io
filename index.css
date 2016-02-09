@@ -152,19 +152,15 @@ h2 {
     50% {-webkit-transform: scale(1.2, 1.2);}
     100% {-webkit-transform: scale(1, 1);}
 }
-/*
-#downArrow {
-  -webkit-animation: pulsate 1s ease;
-    -webkit-animation-iteration-count: infinite; 
-    background-color: gray;
-    padding: 10px;
-        border-radius: 50%;
-    color: white;
-    display: inline-block;
-    text-align: center;
-}
-*/
 
+#downArrow {
+  -webkit-animation: pulsate 2s ease;
+    -webkit-animation-iteration-count: infinite; 
+    margin: auto;
+    display: block;
+    width: 10%;
+    transition: 1s;
+}
 
 .portfolioImg {
 	border: 1px solid #3399ff;
