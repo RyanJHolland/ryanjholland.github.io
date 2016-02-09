@@ -1,7 +1,6 @@
 body {
 	color:  #efeff5;
 	background-image: url('background.jpg');
-    background-repeat: no-repeat;
     background-attachment: fixed;
 	font-size: 16px;
 	text-align: left;
@@ -159,6 +158,12 @@ h2 {
     margin: auto;
     display: block;
     width: 10%;
+	border-radius: 50%;
+}
+#downArrow:hover {
+	background-color: #efeff5;
+	margin: auto;
+    display: block;
     transition: 1s;
 }
 
