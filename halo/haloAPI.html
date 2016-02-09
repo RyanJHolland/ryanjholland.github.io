@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSSample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+At least the HTML loade
+d<script type="text/javascript">
+
+$.ajax({
+url: "api_caller.php",
+type: "GET",
+data:{
+url: "https://www.haloapi.com/profile/h5/profiles/VetoForBRS/emblem"
+},
+dataType: "json"
+})
+.done(function(response) {
+    console.log("success " + response);
+})
+.fail(function(data) {
+    console.log("failure " + data);
+});
+/*
+
+var data_from_ajax;
+
+$.get('C:\Users\Ryan\Documents\back end project\api_caller.php', function(data) {
+  data_from_ajax = data;
+});
+
+console.log(data_from_ajax);
+
+    $(function() {
+        var params = {
+            // Request parameters
+            "size": 95,
+        };
+      
+        $.ajax({
+            url: "https://www.haloapi.com/profile/h5/profiles/VetoForBRS/emblem",
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","84afd32e2c704a4a850f1216463e9e1a");
+            },
+            type: "GET",
+            // Request body
+            data: "{body}",
+        })
+        .done(function(data) {
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
+
+*/
+</script>
+</body>
+</html>
