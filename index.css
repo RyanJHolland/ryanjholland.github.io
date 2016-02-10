@@ -6,11 +6,11 @@ body {
 	text-align: left;
 	font-family: 'Raleway', 'Tahoma';
 }
-
+/*
 .highResBackground {
 	background-image: url('background.jpg')
 }
-
+*/
 #mainDiv {
 	margin: 0% 30% 0% 30%;
 }
