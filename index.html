@@ -181,7 +181,7 @@ var downArrow = true;
 window.addEventListener("scroll", function(){
 
 		if (downArrow) {
-			document.getElementById("downArrow").style.visibility = "hidden";
+			document.getElementById("downArrow").style.display = "none";
 		}
 	
 		// finds distance of visible window from the actual top of the page:
@@ -194,7 +194,7 @@ window.addEventListener("scroll", function(){
 		for (var i in pageSections) {
 			
 			if (document.getElementById(pageSections[i]).getBoundingClientRect().top +
-				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight) {
+				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight+100) {
 				
 				if (document.getElementById(pageSections[i]) != null && !document.getElementById(pageSections[i]).classList.contains("active")) {
 					document.getElementById(pageSections[i]).classList.add("active");
