@@ -121,6 +121,10 @@ h2 {
             animation: fadein 1s;
 }
 
+.portfolioHeader {
+	display: inline;
+	margin: auto;
+}
 
 @keyframes fadein {
     from { opacity: 0; }
