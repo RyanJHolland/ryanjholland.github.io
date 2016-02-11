@@ -64,6 +64,7 @@ body {
 	padding: 0px 10px 0px 10px;
 	color: #efeff5 !important;
 	transition: 0.5s;
+	display: inline-block;
 }
 .navLink:hover {
 	background-color: red;
@@ -163,7 +164,7 @@ h2 {
     -webkit-animation-iteration-count: infinite; 
     margin: auto;
     display: block;
-    width: 10%;
+    width: 50px;
 	border-radius: 50%;
 }
 #downArrow:hover {
