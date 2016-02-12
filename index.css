@@ -5,13 +5,13 @@ body {
 	text-align: left;
 	font-family: 'Raleway', 'Tahoma';
 	background-image: url('background_small.jpg');
-	background-size: cover;
     background-attachment: fixed;
+	background-size: cover !important;
     transition: 1s;
 }
 .highResBackground {
 	background-image: url('background.jpg');
-	background-size: cover;
+	background-size: cover !important;
 	transition: 2s;
 }
 #mainDiv {
