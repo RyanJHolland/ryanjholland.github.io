@@ -11,6 +11,7 @@ body {
 }
 .highResBackground {
 	background-image: url('background.jpg');
+	background-size: cover;
 	transition: 2s;
 }
 #mainDiv {
