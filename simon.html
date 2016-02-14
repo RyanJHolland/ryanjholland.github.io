@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Ryan Holland's Portfolio</title>
+	<meta name="description" content="Simon game">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="simon.css" rel="stylesheet">
+  <script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-1 col-md-offset-3">
+        <button id="start">START</button>
+        <button id="restart">RESTART</button>
+      </div>
+      <div class="col-md-1 leftside col-md-offset-1">
+        <button id="btn1" class="colorbuttons"></button>
+      </div>
+      <div class="col-md-1 rightside">
+        <button id="btn2" class="colorbuttons"></button>
+      </div>
+      <div class="col-md-1 col-md-offset-1">
+        <button id="strict">Activate Strict Mode</button>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-md-1 col-md-offset-3" id="feedback">
+      </div>
+      <div class="col-md-1 leftside col-md-offset-1">
+        <button id="btn3" class="colorbuttons"></button>
+      </div>
+      <div class="col-md-1 rightside">
+        <button id="btn4" class="colorbuttons"></button>
+      </div>
+      <div class="col-md-1 col-md-offset-1" id="feedback2">
+      </div>
+    </div>
+  </div>
+
+  <script src="simon.js"></script>
+</body>
+</html>

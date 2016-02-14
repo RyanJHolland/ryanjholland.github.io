@@ -1,0 +1,103 @@
+html {
+  text-align: center;
+  margin-top: 30px;
+}
+
+body {
+  background-color: black;
+}
+
+#feedback, #feedback2 {
+  color: white;
+}
+
+.col-md-1 {
+  width: 100px;
+  height: 100px;
+}
+
+button {
+  width: 93%;
+  height: 90px;
+  border: 5px outset;
+  transition: 0.5s;
+}
+button:active {
+  transform: translate(2px, 2px);
+  transform: scale(.9, .9);
+}
+
+#restart {
+  display: hidden;
+  position: absolute;
+}
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1, 1);}
+    50% {-webkit-transform: scale(1.2, 1.2);}
+    100% {-webkit-transform: scale(1, 1);}
+}
+
+#start {
+  -webkit-animation: pulsate 1s ease;
+    -webkit-animation-iteration-count: infinite; 
+}
+
+#start,
+#restart {
+    font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  height: 90px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+}
+
+#strict {
+  font-weight: bold;
+  width: 95%;
+  height: 90px;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.leftside {
+  text-align: auto;
+}
+
+.rightside {
+  text-align: auto;
+}
+
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding: 0;
+}
+
+#btn1 {
+  background-color: green;
+}
+
+#btn2 {
+  background-color: red;
+}
+
+#btn3 {
+  background-color: purple;
+}
+
+#btn4 {
+  background-color: blue;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.colorbutton:click {
+  background-color: white;
+}

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<script src="//load.sumome.com/" data-sumo-site-id="ca3e3241bc1b76d24c459c9503c3d4589728f06c624c2ffac009f10ffd3a4e51" async="async"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ryan Holland's Portfolio</title>
+	<meta name="description" content="Ryan Holland's Portfolio, Houston, Texas Web designer, programmer, javascript, html5, css3" />
+	<meta name="author" content="Ryan Holland" />
+	<meta name="Copyright" content="Ryan Holland" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="index_tablet.css" media="screen and (max-width: 1250px)">
+	<link rel="stylesheet" href="index_mobile.css" media="screen and (max-width: 500px)">
+</head>
+
+<body>
+<span id="topAnchor"></span>
+	<img src="background.jpg" style="display: none;" />
+	<div id="mainDiv">
+
+		<div id="topPad"></div>
+		<h2 class="center">Ryan Holland</h2>
+		<h5 class="center">JavaScript Developer</h5>
+
+		<div id="introText">
+				Need a 'diamond in the rough' you can teach to do things your way?
+				<br><br>
+				Need someone self-motivated, who will put in the effort to quickly learn what you want?
+				<br><br>
+				Need to offload your grunt-work to an eager assistant?
+		</div>
+
+		<nav>
+			<h2 id="navBar">
+				<a onclick="smoothScroll(portfolioAnchor)" class="navLink" id="portfolioHeader">Portfolio</a>
+				<a onclick="smoothScroll(aboutAnchor)"><span class="navLink">About</span></a>
+				<a onclick="smoothScroll(contactAnchor)"><span class="navLink">Contact</span></a>
+				<br>
+			</h2>
+		</nav>
+		
+		<a onclick="smoothScroll(portfolioAnchor)"><img id="downArrow" src="down_arrow.png" /></a>
+
+		<div class="darkOnLight" id="portfolio1Div">
+
+		<span id="portfolioAnchor"></span>
+			<div id="imgUpper">
+				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
+					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
+				</a>
+			</div>
+
+			<h2 class="portfolioHeader">I made a <a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a> that filters every page you visit to block spoilers from movies, TV, or sports.</h2>
+			<br><br>
+			<div id="imgLower">
+				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
+					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
+				</a>
+			</div>
+			From concept to published in about five days.
+			<br><br>
+			You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
+			<br><br>
+			There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
+			<br><br>
+
+			It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
+			<br><br>
+			I really enjoyed making this because it is something people would actually use (and about 15 are using it right now.) It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
+			<br><br>
+			<a href="https://github.com/RyanJHolland/Spoiler-Blocker">See code on Github</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight" id="portfolio2Div">
+			<a href="tictactoe.html"><img alt="tic-tac-toe screenshot" class="portfolioImg smallImg" src="tictactoe.png"/></a>
+			<a href="tictactoe.html"><h2 class="portfolioHeader">Tic-Tac-Toe</h2></a>
+			<br>
+			The computer AI begins by moving randomly, but makes smarter decisions as difficulty increases, until the best outcome you can hope for is a tie. Difficulty increases as you win games, or you can change it manually. I used a lot of CSS and JS.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/LpvmER">See code on Codepen</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight" id="portfolio3Div">
+			<a href="simon.html"><img alt="Simon screenshot" class="portfolioImg smallImg" src="simon.png"/></a>
+			<h2 class="portfolioHeader"><a href="simon.html">"Simon" game</a></h2>
+			<br><br>
+			It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/ZbdBNK">See code on Codepen</a>
+			<br>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight" id="portfolio4Div">
+			<a href="searcher.html"><img alt="Wiki searcher screenshot" class="portfolioImg smallImg" src="searcher.png"/></a>
+			<h2 class="portfolioHeader"><a href="searcher.html">Wikipedia searcher</a></h2>
+			<br><br>
+			It uses the Wikipedia API to search for articles matching whatever the user types into the search box, updating as they type, letter-by-letter, like Google Search's Auto-Complete function. I used JQuery.
+			<br><br>
+			<a href="http://codepen.io/RyanJHolland/pen/jbdpoj">See code on Codepen</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight" id="portfolio5Div">
+
+			<h2>Other projects:</h2>
+			<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
+			<br><br>
+			<a href="calculator.html">A calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
+			<br><br>
+			<a href="weather.html">Local weather viewer</a>, using the HTML5 feature of getting the user's location, and a weather API.
+			<br><br>
+			<a href="twitch.html">Twitch stream status viewer</a>, which uses an API to show whether a list of streamers are online. This was the first project where I had to use callbacks and wrangle with the asynchronous nature of JavaScript.
+			<br><br>
+			<a href="pomodoro.html">Work/break timer</a>, a countdown that tells you when it's time to chillax and when it's time to workax. Also known as a "Pomodoro clock".
+			<br><br>
+			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
+			<br><br>
+			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2.
+
+		</div>
+		
+		<br><br><br>
+		
+		<a onclick="smoothScroll(aboutAnchor)"><h2 class="header" id="aboutHeader">About Me</h2></a>
+		<div class="darkOnLight" id="aboutDiv"><span id="aboutAnchor"></span>
+			<img alt="the handsomest man" class="smallImg" src="me.jpg"/>
+			I grew up on computers because my dad is a programmer (and mom is a graphic designer), but I focused on art and music, perhaps as a form of rebellion against the family trade.
+			<br><br>
+			I graduated with a BSc in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3), but the weak oil market inspired me to try to boost my resume with programming skills. A few loops later, I fell in love with it and decided to make it my career.
+			<br><br>
+			I have worked as an art teacher, guitar tutor, waiter, and bartender. My hobbies include reading, jamming with friends, hiking, and gaming.
+			<br><br>
+			I am familiar with the basics of SEO/Internet marketing, animation (2d and 3d), Flash, and Photoshop.
+		</div>
+
+		<br><br><br>
+
+		<a onclick="smoothScroll(contactAnchor)"><h2 class="header" id="contactHeader">Contact</h2></a>
+
+		<div class="darkOnLight" id="contactDiv">
+			<br>
+			<div id="contactData">
+				<a href="mailto:ryanholland1987@gmail.com">RyanHolland1987@Gmail.com</a>
+				<br><br>
+			</div>
+			<br>
+			Houston, Texas
+			<br>
+			willing to move or work remotely
+			<br><br>
+		</div>
+	<!--
+	<script>
+			//because email trawlers probably won't read JavaScript:
+			var data = "";
+			data += "Ryan";
+			data += "Holland";
+			data += 1987;
+			data += "@GMail.com";
+			data += "\r";
+			data += "713.51";
+			data += "6.7730";
+			document.getElementById('contactData').innerText = data;
+		</script>
+	<a href="https://www.linkedin.com/in/ryan-holland-073779100"><img alt="linkedin" class="contactImg" src="linkedin.png"/></a>   
+	<a title="@ryanjholland's GitHub Profile" href="https://github.com/RyanJHolland" target="_blank"><img alt="github" class="contactImg" src="github.png"/></a></h2>
+-->
+<br><br><br><br><br><br>
+<a onclick="smoothScroll(topAnchor)"><h2 class="navLink center" style="float:right;">Back to top</h2></a>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+
+
+<span id="contactAnchor" class="center"></span>
+<script>
+/*
+setTimeout(function() {
+document.body.className = "highResBackground";
+}, 2500);
+*/
+
+// I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
+var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
+
+//var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
+
+var downArrow = true;
+window.addEventListener("scroll", function(){
+
+		if (downArrow) {
+			document.getElementById("downArrow").style.display = "none";
+		}
+	
+		// finds distance of visible window from the actual top of the page:
+		var scrollTop = (window.pageYOffset !== undefined) ?
+		window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+		
+		var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		
+		// checks whether we have scrolled past each section yet:
+		for (var i in pageSections) {
+			
+			if (document.getElementById(pageSections[i]).getBoundingClientRect().top +
+				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight+100) {
+				
+				if (document.getElementById(pageSections[i]) != null && !document.getElementById(pageSections[i]).classList.contains("active")) {
+					document.getElementById(pageSections[i]).classList.add("active");
+				}
+			} else {
+				// if not, make it inactive if it is active:
+				if (document.getElementById(pageSections[i]) != null && document.getElementById(pageSections[i]).classList.contains("active")) {
+					document.getElementById(pageSections[i]).classList.remove("active");
+				}
+			}
+			/*
+			console.log(initialNavBar + " | " + scrollTop);
+			if (scrollTop > initialNavBar) {
+				document.getElementById("navBar").classList.add("header");
+			} else {
+				document.getElementById("navBar").classList.remove("header");
+			}
+			*/
+		};
+	});
+
+window.smoothScroll = function(target) {
+	var scrollContainer = target;
+    do { //find scroll container
+    	scrollContainer = scrollContainer.parentNode;
+    	if (!scrollContainer) return;
+    	scrollContainer.scrollTop += 1;
+    } while (scrollContainer.scrollTop == 0);
+
+
+    if (downArrow) {
+    	var targetY = -50;
+    } else {
+    	var targetY = 0;
+    }
+
+    do { //find the top of target relatively to the container
+    	if (target == scrollContainer) break;
+    	targetY += target.offsetTop;
+    } while (target = target.offsetParent);
+
+    scroll = function(c, a, b, i) {
+    	i++; if (i > 30) return;
+    	c.scrollTop = a + (b - a) / 30 * i;
+    	setTimeout(function(){ scroll(c, a, b, i); }, 20);
+    }
+    // start scrolling
+    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+}
+</script>
+</body>
+
+</html>

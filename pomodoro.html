@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Pomodoro clock</title>
+	<meta name="description" content="A timer that tells you when to chillax and when to workax">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>#everything {
+  text-align: center;
+  background: white;
+  color: black;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-radius: 10%;
+  box-shadow: 10px 10px 10px black;
+  border: 2px solid;
+}
+
+body {
+  background-color: gray;
+}
+
+#restPic {
+  position: absolute;
+  right: 300px;
+  display: none;
+}
+
+#workPic {
+  position: absolute;
+  left: 300px;
+  display: block;
+}
+
+h2 {
+  display: inline-block;
+}
+
+#restLength {
+  display: inline-block;
+  font-size: 30px;
+}
+
+#workLength {
+  display: inline-block;
+  font-size: 30px;
+}
+
+button {
+  font-size: 30px;
+  background-color: lightgray;
+  border-radius: 30%;
+}
+
+h1 {
+  color: black;
+}
+
+#minutes {
+  font-size: 30px;
+  color: black;
+  display: inline-block;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 30%;
+  background-color: white;
+}
+
+#seconds {
+  font-size: 30px;
+  color: black;
+  display: inline-block;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 30%;
+  background-color: white;
+}
+
+#restLength,
+#workLength {
+  font-size: 30px;
+  color: black;
+  display: inline-block;
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 30%;
+  background-color: white;
+}
+
+#activity {
+  display: inline-block;
+}</style>
+	<script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+<div id="everything">
+  <h1>Pomodoro Timer</h1>
+  <img src="https://cr2014studyabroad.files.wordpress.com/2014/12/pineapple-2.png" id="restPic">
+  <img src="https://blotterpaper.files.wordpress.com/2013/02/working-hard.jpg" style="border-radius:50%" id="workPic">
+
+  <div id="rest">
+    <h2>Rest length:</h2>
+    <button id="restDown" onClick="restDown()">-</button>
+    <div id="restLength">5</div>
+    <button id="restUp" onClick="restUp()">+</button> minutes
+  </div>
+
+  <div id="work">
+    <h2>Work length:</h2>
+    <button id="workDown" onClick="workDown()">-</button>
+    <div id="workLength">25</div>
+    <button id="workUp" onClick="workUp()">+</button> minutes
+  </div>
+
+  <h3 id="activity"></h3>
+  <div id="minutes"></div> <strong>:</strong>
+  <div id="seconds"></div>
+  <br>
+  <br>
+  <button id="hurry" onClick="hurry()">Hurry up</button>
+  <br>
+  <br>
+</div>
+
+<script>var working = true;
+secCounter = workLength.innerHTML * 60;
+minutes.innerHTML = 25;
+seconds.innerHTML = 0;
+activity.innerHTML = "Next rest in:"
+var paused = false;
+
+function styleSwap() {
+  if (working) {
+    document.getElementById("restPic").style.display = "none";
+    document.getElementById("workPic").style.display = "block";
+    document.getElementById("everything").style.background = "white";
+    document.body.style.backgroundColor = "gray";
+    document.getElementById("everything").style.color = "black";
+    document.getElementById("everything").style.boxShadow = "10px 10px 10px black";
+    document.getElementById("restLength").style.color = "black";
+    document.getElementById("workLength").style.color = "black";
+    document.getElementById("minutes").style.color = "black";
+    document.getElementById("seconds").style.color = "black";
+    var h1Elements = document.getElementsByTagName("h1");
+
+    for (var i = 0; i < h1Elements.length; i++) {
+      h1Elements[i].style.color = "black";
+      var buttons = document.getElementsByTagName("button");
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style.backgroundColor = "lightgray";
+      buttons[i].style.color = "black";
+    }
+  }
+  else
+  {
+    document.getElementById("restPic").style.display = "block";
+    document.getElementById("workPic").style.display = "none";
+    document.getElementById("everything").style.background = "lightgreen";
+    document.body.style.backgroundColor = "cyan";
+    document.getElementById("everything").style.color = "darkblue";
+    document.getElementById("everything").style.boxShadow = "10px 10px 10px darkblue";
+    document.getElementById("restLength").style.color = "purple";
+    document.getElementById("workLength").style.color = "purple";
+    document.getElementById("minutes").style.color = "purple";
+    document.getElementById("seconds").style.color = "purple";
+    var h1Elements = document.getElementsByTagName("h1");
+
+    for (var i = 0; i < h1Elements.length; i++) {
+      h1Elements[i].style.color = "purple";
+      var buttons = document.getElementsByTagName("button");
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style.backgroundColor = "yellow";
+      buttons[i].style.color = "purple";
+    }
+  }
+}
+
+/*I read that the better solution is to use the computer's date & time values... I may do that as an alternate solution...*/
+window.setTimeout("Tick()", 1000);
+
+function Tick() {
+
+  secCounter--;
+  minutes.innerHTML = Math.floor(secCounter / 60);
+  seconds.innerHTML = secCounter % 60;
+  if (secCounter <= 0) {
+    if (working) {
+      secCounter = 60 * restLength.innerHTML;
+      activity.innerHTML = "Vacation for another:"
+      working = false;
+      styleSwap();
+    } else {
+      secCounter = 60 * workLength.innerHTML;
+      activity.innerHTML = "Next rest in:";
+      working = true;
+      styleSwap();
+    }
+  }
+  window.setTimeout("Tick()", 1000);
+
+}
+
+function restDown() {
+  restLength.innerHTML--;
+  secCounter = secCounter - 60;
+}
+
+function restUp() {
+  restLength.innerHTML++;
+  secCounter = secCounter + 60;
+}
+
+function workDown() {
+  workLength.innerHTML--;
+  secCounter = secCounter - 60;
+}
+
+function workUp() {
+  workLength.innerHTML++;
+  secCounter = secCounter + 60;
+}
+
+function hurry() {
+  secCounter = 1;
+}
+</script>
+
+</body>
+</html>

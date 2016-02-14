@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Quote VOLCANO</title>
+	<meta name="description" content="KABOOM GOES THE QUOTES">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>body {
+  font-family:"Arial",serif;
+  font-size: 30px;
+  text-align:center;
+  background-image:url("http://www.csce.uark.edu/~jgauch/4813/src/textures/rock3.jpg");
+  background-color:black;
+   color:orange;
+  text-shadow:0px -1px red;
+}
+
+img {
+  border-radius:50%;
+}
+button {
+  border-radius:50%;
+}
+
+h1 {
+  text-shadow:0px -5px red;
+}</style>
+	<script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+<h1>Quote Volcano</h1>
+<p>Click the button below to squeeze a quote out of the quote volcano!</p>
+<button type="button" onClick="press()">
+  <img src="https://38.media.tumblr.com/avatar_bf656edec77f_128.png">
+</button>
+<br>
+<div id="quote">
+</div>
+
+<script>
+quotes=["A penny saved in lava is a penny burned.", "The Texas coastline would be a huge tropical reef if it weren't for the Mississippi River clouding the Gulf waters with mud and silt.","Hawaii is made out of the runny kind of lava: 'Mafic' lava, so-called because of its relatively high magnesium and ferric(iron) content. This is good, because it will never erupt violently like Pompeii... It erupts like chocolate syrup.", "Volcanos which erupt violently are ones with lots of silica, which gums up the works until pressure builds up. They result from subducting oceanic slabs which grab silica from continental crust...", "Hummus is made from chickpea beans, also known as garbonzo beans, which don't taste that good outside of hummus.", "The cowboy got a dachshund because someone told him to 'get along, little doggie'."]
+
+output=document.getElementById('quote');
+
+function press() {
+  
+
+output.innerHTML=(quotes[Math.floor(Math.random()*quotes.length)])
+
+
+
+}
+
+</script>
+
+</body>
+</html>

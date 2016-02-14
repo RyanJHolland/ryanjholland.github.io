@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<meta name="description" content="This bad boy can calculate most any number... Except it's scared of 7 because 7 8 9.">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="jquery-1.12.0.min.js"></script>
+	<style type="text/css">html {
+  background-color: white;
+  text-align: center;
+}
+
+#calcBody {
+  margin: auto;
+  background-color: lightgray;
+  box-shadow: 2px 5px black;
+  border-radius: 30px;
+  border-style: outset;
+  width: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10%;
+}
+
+#display {
+  background-color: lightgreen;
+  box-shadow: -1px -3px black;
+  border-radius: 8px;
+  border-style: inset;
+  height: 45px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+button {
+  background-color: #646464;
+  box-shadow: 1px 3px black;
+  border-radius: 8px;
+  border-style: outset;
+  min-width: 40px;
+}
+
+.col-md-3 {
+  color: white;
+  padding: 5px;
+  font-size: 30px;
+}
+
+#equals {
+  padding-left: 42px;
+  padding-right: 42px;
+  margin-top: 5px;
+  font-size: 30px;
+  color: white;
+}</style>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<br>
+<br>
+<div id="calcBody">
+  <div class="container-fluid">
+    <div class="row">
+      <h2>Calcu-tron 5000</h2>
+    </div>
+    <div class="row">
+      <div id="display" class="col-md-12"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button onclick="AC()" style="background-color:darkred;border-color:darkred;">AC</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="CE()" style="background-color:darkred;border-color:darkred;">CE</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="modulo()">%</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="division()">/</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button onclick="seven()">7</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="eight()">8</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="nine()">9</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="times()">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button onclick="four()">4</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="five()">5</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="six()">6</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="subtract()">-</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button onclick="one()">1</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="two()">2</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="three()">3</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="plus()">+</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button onclick="zero()">0</button>
+      </div>
+      <div class="col-md-3">
+        <button onclick="decimal()">.</button>
+      </div>
+      <div class="col-md-6">
+        <button onclick="equals()" id="equals">=</button>
+      </div>
+    </div>
+    <br>
+  </div>
+  <div id="debug"></div>
+
+
+<script>
+// equation is the equation you're typing in. It is calculated by the eval() function in the equals button.
+// memory is the result of the previous equation. It is forgotten if they press a number, but used as a starting point 
+// if they press an operator.
+var memory="";
+var equation="";
+
+function one() {
+  memory="";
+  equation=equation.concat(1);
+  display.innerHTML=equation;
+}
+
+function two() {
+  memory="";
+  equation=equation.concat(2);
+  display.innerHTML=equation;
+}
+
+function three() {
+  memory="";
+  equation=equation.concat(3);
+  display.innerHTML=equation;
+}
+
+function four() {
+  memory="";
+  equation=equation.concat(4);
+  display.innerHTML=equation;
+}
+
+function five() {
+  memory="";
+  equation=equation.concat(5);
+  display.innerHTML=equation;
+}
+
+function six() {
+  memory="";
+  equation=equation.concat(6);
+  display.innerHTML=equation;
+}
+
+function seven() {
+  memory="";
+  equation=equation.concat(7);
+  display.innerHTML=equation;
+}
+
+function eight() {
+  memory="";
+  equation=equation.concat(8);
+  display.innerHTML=equation;
+}
+
+function nine() {
+  memory="";
+  equation=equation.concat(9);
+  display.innerHTML=equation;
+}
+
+function zero() {
+  memory="";
+  equation=equation.concat(0);
+  display.innerHTML=equation;
+}
+
+function plus() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+  equation=equation.concat("+");
+  display.innerHTML=equation;
+}
+
+function subtract() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+  equation=equation.concat("-");
+  display.innerHTML=equation;
+}
+
+function times() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+  equation=equation.concat("*");
+  display.innerHTML=equation;
+}
+
+function division() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+  equation=equation.concat("/");
+  display.innerHTML=equation;
+}
+
+function decimal() {
+  equation=equation.concat(".");
+  display.innerHTML=equation;
+}
+
+function modulo() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+  equation=equation.concat("%");
+  display.innerHTML=equation;
+}
+
+function equals() {
+  if (eval(equation)) {
+    equation=eval(equation);
+  display.innerHTML=equation;
+  memory=equation;
+  equation="";
+  }
+}
+
+function AC() {
+  memory="";
+  equation="";
+  display.innerHTML=equation;
+}
+
+function CE() {
+  equation=equation.substring(0,equation.length-1);
+  display.innerHTML=equation;
+}
+</script>
+
+</body>
+</html>
