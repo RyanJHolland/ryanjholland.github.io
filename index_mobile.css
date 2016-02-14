@@ -1,13 +1,13 @@
+#topPad {
+	height: 20px;
+}
 
-html{
-     height:100%;
-     min-height:100%;
-     }
-body{
-     min-height:100%;
-     }
+#introText {
+	font-size: 15px;
+	padding: 10px;
+	margin: 0%;
+}
 
-     
 .portfolioImg {
 	border: 1px solid #3399ff;
 	width: 100%;

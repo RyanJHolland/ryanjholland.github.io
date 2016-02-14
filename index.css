@@ -1,24 +1,52 @@
+
+html{
+     height:100%;
+     min-height:100%;
+}
+#topPad {
+	height: 100px;
+}
+
 body {
+ 	min-height:100%;
 	color:  #efeff5;
 	background-color: #1c1a33;
 	font-size: 16px;
 	text-align: left;
 	font-family: 'Raleway', 'Tahoma';
-	background-image: url('background_small.jpg');
+/*	background-image: url('background_small.jpg');
     background-attachment: fixed;
 	background-size: cover !important;
+*/
     transition: 1s;
 }
+/*
 .highResBackground {
 	background-image: url('background.jpg');
 	background-size: cover !important;
 	transition: 2s;
 }
+*/
+
 #mainDiv {
 	margin: 0% 30% 0% 30%;
 }
 
-
+#introText {
+	color: #1c1a33;
+	background-color: #efeff5;
+	font-weight: bold;
+	font-size: 22px;
+	padding: 30px;
+	text-align: center;
+	overflow:hidden;
+	transition: 1s;
+	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+         -o-animation: fadein 1s; /* Opera < 12.1 */
+            animation: fadein 1s;
+}
 
 .darkOnLight {
 	color: #1c1a33;
@@ -105,6 +133,7 @@ a {
 
 h1 {
 	font-size: 55px;
+	margin: 0px;
 	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
         -ms-animation: fadein 1s; /* Internet Explorer */
@@ -115,11 +144,16 @@ h1 {
 h2 {
 	text-align: center;
 	font-size: 25px;
+	margin: 10px;
 	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
         -ms-animation: fadein 1s; /* Internet Explorer */
          -o-animation: fadein 1s; /* Opera < 12.1 */
             animation: fadein 1s;
+}
+
+h5 {
+	margin: 10px;
 }
 
 .portfolioHeader {
