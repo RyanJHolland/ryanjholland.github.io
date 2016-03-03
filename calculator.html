@@ -4,290 +4,359 @@
 <head>
 	<meta charset="utf-8">
 	<title>Calculator</title>
-	<meta name="description" content="This bad boy can calculate most any number... Except it's scared of 7 because 7 8 9.">
+	<meta name="description" content="Calculator app">
 	<meta name="author" content="Ryan Holland">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="jquery-1.12.0.min.js"></script>
-	<style type="text/css">html {
-  background-color: white;
-  text-align: center;
-}
 
-#calcBody {
-  margin: auto;
-  background-color: lightgray;
-  box-shadow: 2px 5px black;
-  border-radius: 30px;
-  border-style: outset;
-  width: 300px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 10%;
-}
+	
+  <style type="text/css">
 
-#display {
-  background-color: lightgreen;
-  box-shadow: -1px -3px black;
-  border-radius: 8px;
-  border-style: inset;
-  height: 45px;
-  text-align: right;
-  font-weight: bold;
-  font-size: 30px;
-}
+    body {
+      overflow: hidden !important;
+    }
 
-button {
-  background-color: #646464;
-  box-shadow: 1px 3px black;
-  border-radius: 8px;
-  border-style: outset;
-  min-width: 40px;
-}
+    html {
+      cursor: none;
+      background-color: white;
+      text-align: center;
+    }
 
-.col-md-3 {
-  color: white;
-  padding: 5px;
-  font-size: 30px;
-}
+    a {
+      cursor: none;
+    }
 
-#equals {
-  padding-left: 42px;
-  padding-right: 42px;
-  margin-top: 5px;
-  font-size: 30px;
-  color: white;
-}</style>
+    #calcBody {
+      margin: auto;
+      background-color: lightgray;
+      box-shadow: 2px 5px black;
+      border-radius: 30px;
+      border-style: outset;
+      max-width: 300px;
+      width: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #display {
+      background-color: lightgreen;
+      color: darkgreen;
+      box-shadow: -1px -3px black;
+      border-radius: 8px;
+      border-style: inset;
+      height: 45px;
+      text-align: right;
+      font-weight: bold;
+      font-size: 30px;
+      padding-right: 10px;
+      padding-top: 5px;
+    }
+
+    button {
+      color: white;
+      font-size: 20px;
+      width: 50px;
+      height: 40px;
+      margin: 10px;
+      background-color: #646464;
+      box-shadow: 1px 3px black;
+      border-radius: 8px;
+      border-style: outset;
+      min-width: 40px;
+      transition: 0.1s;
+      cursor: none;
+      outline: none;
+    }
+    button:active {
+      color: darkgray;
+      background-color: black;
+      box-shadow: 0px 0px black;
+      transform: translate(1px, 3px);
+      transition: 0.1s;
+      cursor: none;
+      outline: none;
+    }
+    button:hover {
+      cursor: none;
+      outline: none;
+    }
+    button:visited {
+      cursor: none;
+      outline: none;
+    }
+
+    .col-md-3 {
+      color: white;
+      padding: 5px;
+      font-size: 30px;
+    }
+
+    #equals {
+      width: 125px;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    #hand {
+      position: absolute;
+      z-index: 1000;
+      pointer-events: none;
+      overflow: hidden;
+      transition: 0.1s;
+    }
+
+    .handClick {
+      transform: translate(-5px, -25px) skewY(-15deg);
+    }
+
+  </style>
 
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onmousedown="handDown()" onmouseup="handUp()">
 
-<br>
-<br>
-<div id="calcBody">
-  <div class="container-fluid">
-    <div class="row">
-      <h2>Calcu-tron 5000</h2>
-    </div>
-    <div class="row">
-      <div id="display" class="col-md-12"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button onclick="AC()" style="background-color:darkred;border-color:darkred;">AC</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="CE()" style="background-color:darkred;border-color:darkred;">CE</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="modulo()">%</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="division()">/</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button onclick="seven()">7</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="eight()">8</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="nine()">9</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="times()">X</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button onclick="four()">4</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="five()">5</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="six()">6</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="subtract()">-</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button onclick="one()">1</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="two()">2</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="three()">3</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="plus()">+</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <button onclick="zero()">0</button>
-      </div>
-      <div class="col-md-3">
-        <button onclick="decimal()">.</button>
-      </div>
-      <div class="col-md-6">
-        <button onclick="equals()" id="equals">=</button>
-      </div>
-    </div>
-    <br>
+
+  <br>
+  <br>
+  <div id="calcBody">
+    <h1>Calcu-tron 5000</h1>
+    <div id="display"></div>
+    <button onclick="AC()" style="background-color:darkred;border-color:darkred;">AC</button>
+    <button onclick="CE()" style="background-color:darkred;border-color:darkred;">CE</button>
+    <button onclick="modulo()">%</button>
+    <button onclick="division()">/</button>
+    <button onclick="seven()">7</button>
+    <button onclick="eight()">8</button>
+    <button onclick="nine()">9</button>
+    <button onclick="times()">X</button>
+    <button onclick="four()">4</button>
+    <button onclick="five()">5</button>
+    <button onclick="six()">6</button>
+    <button onclick="subtract()">-</button>
+    <button onclick="one()">1</button>
+    <button onclick="two()">2</button>
+    <button onclick="three()">3</button>
+    <button onclick="plus()">+</button>
+    <button onclick="zero()">0</button>
+    <button onclick="decimal()">.</button>
+    <button onclick="equals()" id="equals">=</button>
   </div>
   <div id="debug"></div>
 
+  <img id="hand" src="hand.png" class="handUp" />
 
-<script>
+  <script>
+
+    $(document).keypress(function(event) {
+      console.log(event.which);
+      // I've read that too many ifs & elses is bad practice, but I don't know a better way.  I'll revisit it when I have time.
+      if (event.which == 48) {
+        zero();
+      } else if (event.which == 49) {
+        one();
+      } else if (event.which == 50) {
+        two();
+      } else if (event.which == 51) {
+        three();
+      } else if (event.which == 52) {
+        four();
+      } else if (event.which == 53) {
+        five();
+      } else if (event.which == 54) {
+        six();
+      } else if (event.which == 55) {
+        seven();
+      } else if (event.which == 56) {
+        eight();
+      } else if (event.which == 57) {
+        nine();
+      } else if (event.which == 45) {
+        subtract();
+      } else if (event.which == 43) {
+        plus();
+      } else if (event.which == 42) {
+        times();
+      } else if (event.which == 47) {
+        division();
+      } else if (event.which == 61 || 13) {
+        equals();
+      } else if (event.which == 46) {
+        decimal();
+      } else if (event.which == 37) {
+        modulo();
+      } 
+    });
+
+    if (window.matchMedia("(min-width: 700px)").matches) {
+  $(document).mousemove(function(e){ // this event triggers on click / unclick also
+    if ($("#hand").hasClass("handUp")) {
+      $("#hand").offset({left:e.pageX, top:e.pageY});
+    }
+  });
+
+  function handDown() {
+    $("#hand").addClass("handClick");
+    $("#hand").removeClass("handUp");
+  };
+  function handUp() {
+    setTimeout(function() {
+      $("#hand").addClass("handUp");
+    }, 100);
+    $("#hand").removeClass("handClick");
+  };
+} else {
+  $("#hand").css("display", "none");
+}
+
+
+
 // equation is the equation you're typing in. It is calculated by the eval() function in the equals button.
 // memory is the result of the previous equation. It is forgotten if they press a number, but used as a starting point 
 // if they press an operator.
 var memory="";
 var equation="";
 
+function memCheck() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+}
+
+function update() {
+  equation.length > 13 ? display.innerHTML = equation.substring(equation.length-13, equation.length) : display.innerHTML = equation;
+}
+
 function one() {
   memory="";
   equation=equation.concat(1);
-  display.innerHTML=equation;
+  update();
 }
 
 function two() {
   memory="";
   equation=equation.concat(2);
-  display.innerHTML=equation;
+  update();
 }
 
 function three() {
   memory="";
   equation=equation.concat(3);
-  display.innerHTML=equation;
+  update();
 }
 
 function four() {
   memory="";
   equation=equation.concat(4);
-  display.innerHTML=equation;
+  update();
 }
 
 function five() {
   memory="";
   equation=equation.concat(5);
-  display.innerHTML=equation;
+  update();
 }
 
 function six() {
   memory="";
   equation=equation.concat(6);
-  display.innerHTML=equation;
+  update();
 }
 
 function seven() {
   memory="";
   equation=equation.concat(7);
-  display.innerHTML=equation;
+  update();
 }
 
 function eight() {
   memory="";
   equation=equation.concat(8);
-  display.innerHTML=equation;
+  update();
 }
 
 function nine() {
   memory="";
   equation=equation.concat(9);
-  display.innerHTML=equation;
+  update();
 }
 
 function zero() {
   memory="";
   equation=equation.concat(0);
-  display.innerHTML=equation;
+  update();
 }
 
 function plus() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
+  memCheck();
+  if ( /[0-9]/.test(equation.charAt(equation.length-1)) ) { // regexp makes sure that the last character inputted is a number before letting you add a + sign.
+    equation=equation.concat("+");
+    update();
   }
-  equation=equation.concat("+");
-  display.innerHTML=equation;
 }
 
 function subtract() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
+  memCheck();
+  if ( /[0-9]/.test(equation.charAt(equation.length-1)) || equation.length == 0) { // you can start off with a negative sign too
+    equation=equation.concat("-");
+    update();
   }
-  equation=equation.concat("-");
-  display.innerHTML=equation;
 }
 
 function times() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
+  memCheck();
+  if ( /[0-9]/.test(equation.charAt(equation.length-1)) ) { 
+    equation=equation.concat("*");
+    update();
   }
-  equation=equation.concat("*");
-  display.innerHTML=equation;
 }
 
 function division() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
+  memCheck();
+  if ( /[0-9]/.test(equation.charAt(equation.length-1)) ) { 
+    equation=equation.concat("/");
+    update();
   }
-  equation=equation.concat("/");
-  display.innerHTML=equation;
 }
 
 function decimal() {
-  equation=equation.concat(".");
-  display.innerHTML=equation;
+  if (equation.length == 0 || !/[\.]/.test(equation) || /[\+\-\*\/][0-9]+$/.test(equation) ) { // only allowed if starting with a decimal, or if no decimal yet, or if (and this is the hard one) there are decimals already, but there are operators between them... So 4.2-5.2 is OK, but 2.4.2 is not OK.
+    equation=equation.concat(".");
+    update();
+  }
 }
 
 function modulo() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
+  memCheck();
+  if ( /[0-9]/.test(equation.charAt(equation.length-1)) ) { 
+    equation=equation.concat("%");
+    update();
   }
-  equation=equation.concat("%");
-  display.innerHTML=equation;
 }
 
 function equals() {
-  if (eval(equation)) {
+  if (/[^0-9.]/g.test(equation) && /[0-9]$/g.test(equation )) { // regexp requires there to be operators to evaluate
     equation=eval(equation);
-  display.innerHTML=equation;
-  memory=equation;
-  equation="";
+    update();
+    memory=equation;
+    if (display.innerHTML.length > 13) {
+      equation = equation.toExponential(7);
+      display.innerHTML=equation;
+    }
+    equation="";
   }
 }
 
 function AC() {
   memory="";
   equation="";
-  display.innerHTML=equation;
+  update();
 }
 
 function CE() {
   equation=equation.substring(0,equation.length-1);
-  display.innerHTML=equation;
+  update();
 }
 </script>
 
