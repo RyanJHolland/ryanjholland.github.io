@@ -217,15 +217,8 @@
 var memory="";
 var equation="";
 
-function memCheck() {
-  if (typeof memory == "number") {
-    equation+=memory;
-    memory="";
-  }
-}
-
 function update() {
-  equation.length > 13 ? display.innerHTML = equation.substring(equation.length-13, equation.length) : display.innerHTML = equation;
+  equation.length > 17 ? display.innerHTML = equation.substring(equation.length-17, equation.length) : display.innerHTML = equation;
 }
 
 function one() {
@@ -288,6 +281,13 @@ function zero() {
   update();
 }
 
+function memCheck() {
+  if (typeof memory == "number") {
+    equation+=memory;
+    memory="";
+  }
+}
+
 function plus() {
   memCheck();
   if ( /[0-9]/.test(equation.charAt(equation.length-1)) ) { // regexp makes sure that the last character inputted is a number before letting you add a + sign.
@@ -337,14 +337,14 @@ function modulo() {
 
 function equals() {
   if (/[^0-9.]/g.test(equation) && /[0-9]$/g.test(equation )) { // regexp requires there to be operators to evaluate
-    equation=eval(equation);
-    update();
-    memory=equation;
-    if (display.innerHTML.length > 13) {
-      equation = equation.toExponential(7);
-      display.innerHTML=equation;
+    equation = eval(equation);
+    memory = equation;
+    if (equation.length > 13) {
+      display.innerHTML=equation.toExponent(7);
+    } else {
+      update();
+      equation="";
     }
-    equation="";
   }
 }
 
