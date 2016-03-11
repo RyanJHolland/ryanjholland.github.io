@@ -62,7 +62,7 @@ body {
 	transform: translate(0px, 100px);
 }
 
-#portfolio5Div > a {
+#portfolio6Div > a {
 	 display: inline-block !important;
 }
 
@@ -102,7 +102,22 @@ body {
 	color: black !important;
 }
 
+#moreInfo, #moreInfo:visited {
+	margin: 2px;
+	padding: 10px 10px 10px 10px;
+	background-color: white;
+	color: black !important;
+	transition: 0.5s;
+	display: inline-block;
+}
+#moreInfo:hover {
+	background-color: gray;
+	color: white !important;
+}
 
+#moreInfoSpanChromeExtension {
+	display: none;
+}
 
 .aboutDiv {
 	margin-bottom: 0px;

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<span id="topAnchor"></span>
+	<span id="topAnchor"></span>
 	<img src="background.jpg" style="display: none;" />
 	<div id="mainDiv">
 
@@ -26,50 +26,49 @@
 		<br><br><br>
 <!--
 		<div id="introText">
-				Need a 'diamond in the rough' you can teach to do things your way?
-				<br><br>
-				Need someone self-motivated, who will put in the effort to quickly learn what you want?
-				<br><br>
-				Need to offload your grunt-work to an eager assistant?
-		</div>
--->
-		<nav>
-			<h2 id="navBar">
-				<a onclick="smoothScroll(portfolioAnchor)" class="navLink" id="portfolioHeader">Portfolio</a>
-				<a onclick="smoothScroll(aboutAnchor)"><span class="navLink">About</span></a>
-				<a onclick="smoothScroll(contactAnchor)"><span class="navLink">Contact</span></a>
-				<br>
-			</h2>
-		</nav>
-		
-		<a onclick="smoothScroll(portfolioAnchor)"><img id="downArrow" src="down_arrow.png" /></a>
 
-		<div class="darkOnLight" id="portfolio1Div">
+		</div>
+	-->
+	<nav>
+		<h2 id="navBar">
+			<a onclick="smoothScroll(portfolioAnchor)" class="navLink" id="portfolioHeader">Portfolio</a>
+			<a onclick="smoothScroll(aboutAnchor)"><span class="navLink">About</span></a>
+			<a onclick="smoothScroll(contactAnchor)"><span class="navLink">Contact</span></a>
+			<br>
+		</h2>
+	</nav>
+
+	<a onclick="smoothScroll(portfolioAnchor)"><img id="downArrow" src="down_arrow.png" /></a>
+
+	<div class="darkOnLight" id="portfolio1Div">
 
 		<span id="portfolioAnchor"></span>
-			<div id="imgUpper">
-				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
-					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
-				</a>
-			</div>
+		<div id="imgUpper">
+			<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
+				<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
+			</a>
+		</div>
 
-			<h2 class="portfolioHeader">I made a <a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a> that filters every page you visit to block spoilers from movies, TV, or sports.</h2>
+		<h2 class="portfolioHeader"><a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">Chrome extension</a>
 			<br><br>
+			filters every page you visit to block spoilers from movies, TV, or sports.</h2>
 			<div id="imgLower">
 				<a href="https://chrome.google.com/webstore/detail/ryans-spoiler-blocker/imgkcgoajllcokmmiegppbenjnjggdbd">
 					<img alt="screenshot of my Spoiler Blocker" class="portfolioImg" src="spoilerBlockerScreenshot.png"/>
 				</a>
 			</div>
-			From concept to published in about five days.
 			<br><br>
-			You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
-			<br><br>
-			There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
-			<br><br>
+			<a onclick="moreInfoChromeExtension()" id="moreInfo">More info</a>
+			<span id="moreInfoSpanChromeExtension">
+				You give it whatever keywords you want (like the names of a show's characters), and it replaces them and text around them with "[TEXT BLOCKED]".
+				<br><br>
+				There were some similar extensions in the Chrome store, but they had mixed reviews, hard-coded keywords, and often did not work on social media. Mine works for any websites and keywords, without blocking the entire page when it detects something.
+				<br><br>
 
-			It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
-			<br><br>
-			I really enjoyed making this because it is something people would actually use (and about 15 are using it right now.) It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
+				It works by storing the user's keywords in the localStorage object, passing them from an omnipresent background script into each webpage's injected script, parsing them into regular expressions, and iterating through the DOM text nodes looking for matches. It runs this search once every second; this allows it to work on dynamically-loaded social media feeds and comment sections, a feature the similar extensions lack. It runs only on the active tab and causes no detectable drop in performance.
+				<br><br>
+				I really enjoyed making this because it is something people would actually use (and about 15 are using it right now.) It took about five days of constant Googling, reading documentation, and testing. I used vanilla JavaScript.
+			</span>
 			<br><br>
 			<a href="https://github.com/RyanJHolland/Spoiler-Blocker">See code on Github</a>
 		</div>
@@ -88,18 +87,28 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio3Div">
+			<a href="https://onepagewonder.herokuapp.com/"><img alt="One Page App screenshot" class="portfolioImg smallImg" src="onepagewonder.png"/></a>
+			<h2 class="portfolioHeader"><a href="https://onepagewonder.herokuapp.com/">One Page Wonder</a></h2>
+			<br><br>
+			A site on which the URL can be changed without the page reloading, like on SoundCloud. This enables features such as streaming audio to persist while the user navigates the site. Manipulates the browser history and URL using history state commands. Back-end written in node.js.
+			<br><br>
+			<a href="https://github.com/RyanJHolland/onepagewonder">See code on Github</a>
+		</div>
+
+		<br>
+
+		<div class="darkOnLight" id="portfolio4Div">
 			<a href="simon.html"><img alt="Simon screenshot" class="portfolioImg smallImg" src="simon.png"/></a>
 			<h2 class="portfolioHeader"><a href="simon.html">"Simon" game</a></h2>
 			<br><br>
 			It flashes buttons in a random sequence; you have to repeat them in order. "Strict Mode" means you have to start over when you answer incorrectly. I used Bootstrap (for its grid system) and JQuery.
 			<br><br>
 			<a href="http://codepen.io/RyanJHolland/pen/ZbdBNK">See code on Codepen</a>
-			<br>
 		</div>
 
 		<br>
 
-		<div class="darkOnLight" id="portfolio4Div">
+		<div class="darkOnLight" id="portfolio5Div">
 			<a href="searcher.html"><img alt="Wiki searcher screenshot" class="portfolioImg smallImg" src="searcher.png"/></a>
 			<h2 class="portfolioHeader"><a href="searcher.html">Wikipedia searcher</a></h2>
 			<br><br>
@@ -110,23 +119,23 @@
 
 		<br>
 
-		<div class="darkOnLight" id="portfolio5Div">
+		<div class="darkOnLight" id="portfolio6Div">
 
 			<h2>Other projects:</h2>
-			<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
+			<a href="calculator.html">Calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
 			<br><br>
-			<a href="calculator.html">A calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
+			<a href="./authorPage/index.html">Responsive page</a> based on a PSD. Work in progress, awaiting their next instructions. Made with Bootstrap, and custom JavaScript to make the 4 divs at the bottom always match heights.
 			<br><br>
 			<a href="weather.html">Local weather viewer</a>, using the HTML5 feature of getting the user's location, and a weather API.
+			<br><br>
+			<a href="newsfeed.html">Web dev newsfeed</a>: Really just a CSS styling of a newsfeed API. Articles are ranked by age, and highlighted by upvote count.
 			<br><br>
 			<a href="twitch.html">Twitch stream status viewer</a>, which uses an API to show whether a list of streamers are online. This was the first project where I had to use callbacks and wrangle with the asynchronous nature of JavaScript.
 			<br><br>
 			<a href="pomodoro.html">Work/break timer</a>, a countdown that tells you when it's time to chillax and when it's time to workax. Also known as a "Pomodoro clock".
 			<br><br>
-			<a href="quote.html">A quote generator</a>, dispensing the ancient wisdom of the volcano.
+			<a href="quote.html">A quote generator</a>, dispensing ancient wisdom.
 			<br><br>
-			I made several websites for fun when younger, mostly related to video games, using basic HTML or IDEs like DreamWeaver. I also did a ton of algorithm exercises visible on my profiles at <a href="http://www.freecodecamp.com/ryanjholland">Free Code Camp</a> and <a href="https://www.codecademy.com/corePro38491">CodeCademy</a>. And, of course, I made this page from scratch in Sublime Text 2.
-
 		</div>
 		
 		<br><br><br>
@@ -136,7 +145,7 @@
 			<img alt="the handsomest man" class="smallImg" src="me.jpg"/>
 			I graduated with a BS in Geology from the University of Houston in Summer 2015 (having taken Calculus 1, 2, and 3.) I had tried to do research with a professor, but she chose someone with programming experience instead. That inspired me to try some basic scripting, and I realized it was a lot of fun. I enjoy the crossover between art and logic. (Before my BS, I studied art.)
 			<br><br>
-			I have worked as an art teacher, guitar tutor, waiter, and bartender; my hobbies include reading, jamming with friends, hiking, and gaming.
+			I have worked as an art teacher, guitar tutor, waiter, and bartender; my hobbies include playing music, reading, gaming, and hiking.
 			<br><br>
 			I am familiar with the basics of SEO/Internet marketing, animation (2D and 3D), Flash, and Photoshop.
 		</div>
@@ -154,7 +163,7 @@
 			<br>
 			Houston, Texas
 			<br>
-			willing to move or work remotely
+			willing and able to move or work remotely
 			<br><br>
 		</div>
 	<!--
@@ -188,17 +197,22 @@ document.body.className = "highResBackground";
 }, 2500);
 */
 
+var moreInfoChromeExtension = function() {
+	document.getElementById('moreInfoSpanChromeExtension').style.display = 'initial';
+	document.getElementById('moreInfo').style.display = 'none';
+};
+
 // I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
-var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
+var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "portfolio6Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
 
 //var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
 
 var downArrow = true;
 window.addEventListener("scroll", function(){
 
-		if (downArrow) {
-			document.getElementById("downArrow").style.display = "none";
-		}
+	if (downArrow) {
+		document.getElementById("downArrow").style.display = "none";
+	}
 	
 		// finds distance of visible window from the actual top of the page:
 		var scrollTop = (window.pageYOffset !== undefined) ?
