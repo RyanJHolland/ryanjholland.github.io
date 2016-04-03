@@ -17,18 +17,9 @@
 
   <h1>Tic-Tac-Toe</h1>
 
-  difficulty <button onclick="increaseDifficulty()">higher</button> or <button onclick="decreaseDifficulty()">lower</button>
+  difficulty <button id="decreaseDifficulty" onclick="decreaseDifficulty()">lower</button> or <button id="increaseDifficulty" onclick="increaseDifficulty()">higher</button>
 
-  <h3 id="Record">
-  Difficulty: 0
-  <br>
-  Your victories: 0
-  <br>
-  Your losses: 0
-  <br>
-  Ties: 0
-  <br>
-  </h3>
+  <h3 id="Record">Difficulty: 0/10<br>Your victories: 0<br>Your losses: 0<br>Ties: 0<br></h3>
 
   <div id="board">
     <div class="slot" id="1" onclick="move(event)">&nbsp;</div>

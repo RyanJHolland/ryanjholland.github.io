@@ -6,13 +6,13 @@ $(document).ready(function() {
   emptySlotCounter = 9;
   playerGoesNext = true;
   playerWentLast = false;
-  winningChain = ""; // for the graphics that highlight it
+  winningRow = ""; // for the graphics that highlight it
   playerMark = "X";
   compMark = "O";
   gameOver = false;
   customDifficultyDifference = 0;
   difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
-  chains = [
+  rows = [
   ["1", "2", "3"],
   ["4", "5", "6"],
   ["7", "8", "9"],
@@ -29,22 +29,26 @@ $(document).ready(function() {
   var sound4 = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
 
   increaseDifficulty = function() {
-    customDifficultyDifference++;
-    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
-    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
-
+    if (difficulty < 10) {
+      customDifficultyDifference++;
+      difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+      $("#Record").html("Difficulty: " + difficulty + "/10<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+    };
   }
 
   decreaseDifficulty = function() {
-    customDifficultyDifference--;
-    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
-    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
-
+    if (difficulty > 0) {
+      customDifficultyDifference--;
+      difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+      $("#Record").html("Difficulty: " + difficulty + "/10<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+    };
   }
 
   resetBoard = function() {
     console.log("resetBoard");
-    difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+    if (0 < difficulty < 10){
+        difficulty = playerWinsCounter - compWinsCounter + customDifficultyDifference;
+      };
     gameOver = false;
     for (var i = 1; i < 10; i++) {
       document.getElementById(i).className = "slot";
@@ -59,7 +63,7 @@ $(document).ready(function() {
       compMove();
     }
     emptySlotCounter = 9;
-    $("#Record").html("Difficulty: " + difficulty + "<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
+    $("#Record").html("Difficulty: " + difficulty + "/10<br>Your victories: " + playerWinsCounter + "<br>Your losses: " + compWinsCounter + "<br>Ties: " + tiesCounter);
   }
 
   function disableMouse() {
@@ -98,10 +102,18 @@ $(document).ready(function() {
     gameOver = true;
     
     if (winner === "X") {
-        sound4.cloneNode(true).play();
+      setTimeout(function() {
+        sound3.cloneNode(true).play();
+      }, 150);
+      setTimeout(function() {
+        sound3.cloneNode(true).play();
+      }, 300);
+      setTimeout(function() {
+        sound3.cloneNode(true).play();
+      }, 450);
       console.log("player won");
-      for (var i in winningChain) {
-        document.getElementById(winningChain[i]).className = "playerWin";
+      for (var i in winningRow) {
+        document.getElementById(winningRow[i]).className = "playerWin";
       }
       playerGoesNext = false;
       playerWinsCounter += 1;
@@ -116,9 +128,12 @@ $(document).ready(function() {
       function compWinGraphic(arg) {
         setTimeout(function() {
           if (arg < 3) {
-            document.getElementById(winningChain[arg]).className = "compWin";
+            document.getElementById(winningRow[arg]).className = "compWin";
             compWinGraphic(arg+1);
-            sound3.cloneNode(true).play();
+
+            setTimeout(function() {
+              sound4.cloneNode(true).play();
+            }, 200);
           }
         }, 150);
       }
@@ -137,23 +152,23 @@ $(document).ready(function() {
   winCheck = function() {
     console.log("winCheck");
     var winnerFound = false;
-    for (var chain in chains) {
+    for (var row in rows) {
       var xCounter = 0;
       var oCounter = 0;
-      for (var i in chains[chain]) {
-        if (document.getElementById(chains[chain][i]).innerHTML === "X") {
+      for (var i in rows[row]) {
+        if (document.getElementById(rows[row][i]).innerHTML === "X") {
           xCounter += 1;
         }
-        if (document.getElementById(chains[chain][i]).innerHTML === "O") {
+        if (document.getElementById(rows[row][i]).innerHTML === "O") {
           oCounter += 1;
         }
         if (xCounter === 3) {
           winnerFound = true;
-          winningChain = chains[chain];
+          winningRow = rows[row];
           someoneWon("X");
         } else if (oCounter === 3) {
           winnerFound = true;
-          winningChain = chains[chain];
+          winningRow = rows[row];
           someoneWon("O");
         }
       }
@@ -216,15 +231,28 @@ $(document).ready(function() {
     }
   }
 
-// I'm using the word "chain" to describe the 3-slot, straight-line, victory conditions. The AI looks at each slot and 
-// prioritizes it by how many chains it is in, taking into account what marks (X or O) are in each of those chains.
-// It prefers slots which are in chains which have other Os, or which have an X, so it can block that chain.
+// HOW THE AI WORKS
+
+// Every turn, it weights each row by looking at what marks (if any) are in its 3 slots.
+
+// A row gains weight if either the player or AI has one mark in it.
+
+// However, if both the player and AI have one mark each in the same row, no one can win in that row,
+// so the AI gives it zero weight.
+
+// If the player is about to win (2 player marks and 1 empty slot in one row), that row gets weighted highly.
+
+// The highest weight is given to a row with 2 AI marks and 1 empty slot.
+
+// After weighting the row, it adds the weight to the slot's weight. Then it weights the next row, repeating
+// the process. After weighting every row, it is ready to choose the best slot by whichever has the highest weight.
+
 AI = function() {
   console.log("AI");
   compMovedAlready = false;
 
-  chainPriorityList = [
-  [0,1],
+  rowPriorityList = [ // this correlates to the 'rows' array at the top of this script.
+  [0,1],              // the first number is the row and the second number is the priority. All start at 1.
   [1,1],
   [2,1],
   [3,1],
@@ -240,123 +268,128 @@ AI = function() {
   0,0,0
   ];
 
-      // For each chain:
-      for (var chain in chains) {
+      // For each row:
+      for (var row in rows) {
 
+        // Tally up the marks in the row by examining each of the row's 3 slots:
         var playerMarkCount = 0;
         var compMarkCount = 0;
-
-        // Count how many of each mark is in the chain on the board now.
-        for (var slot in chains[chain]) {
-          if (document.getElementById(chains[chain][slot]).innerHTML === playerMark) {
+        for (var slot in rows[row]) {
+          if (document.getElementById(rows[row][slot]).innerHTML === playerMark) {
             playerMarkCount += 1;
           }
-          if (document.getElementById(chains[chain][slot]).innerHTML === compMark) {
+          if (document.getElementById(rows[row][slot]).innerHTML === compMark) {
             compMarkCount += 1;
           }
         } 
 
-        // Prioritize it depending on what's in it:
+        // Prioritize the row depending on the tallies:
         if (compMarkCount === 1 && playerMarkCount === 0) {
-          chainPriorityList[chain][1] ++; // finish your own chain
-        } else if (compMarkCount === 0 && playerMarkCount === 1) { 
-          chainPriorityList[chain][1] ++; // block enemy chain
-        } else if ((compMarkCount === 1 || compMarkCount === 2) && (playerMarkCount === 1 || playerMarkCount === 2)) {
-          chainPriorityList[chain][1] -= 100; // ignore inert chain
-        } else if (playerMarkCount === 2) {
-          chainPriorityList[chain][1] += 100; // block enemy victory
-        } else if (compMarkCount === 2) {
-          chainPriorityList[chain][1] += 200; // win game
+          // Finishing your own row is a better idea than starting a new row.
+          rowPriorityList[row][1] ++;
         }
-
-        // Update slot priority list
-        for (var slot in chains[chain]) {
-          if (difficulty>0) {
-            slotPriorityList[chains[chain][slot]-1] += 1 + chainPriorityList[chain][1];
-          } else {
-            slotPriorityList[chains[chain][slot]-1] -= 1 + chainPriorityList[chain][1];
-          }
+        else if (compMarkCount === 0 && playerMarkCount === 1) { 
+          // Blocking an enemy row is a good idea too.
+          rowPriorityList[row][1] ++; 
+        }
+        else if ((compMarkCount === 1 || compMarkCount === 2) && (playerMarkCount === 1 || playerMarkCount === 2)) {
+           // No one can win in this row, so ignore it.
+           rowPriorityList[row][1] = 0;
+         }
+         else if (playerMarkCount === 2) {
+          // The enemy is about to win... This is high priority!
+          rowPriorityList[row][1] += 100; 
+        }
+        else if (compMarkCount === 2) {
+          // But winning the game is the highest priority of all!
+          rowPriorityList[row][1] += 200;
+        }
+        // Update slot priority list. This loop fires after each row has been weighted!
+        // That means the AI's choice of slot will take into account the various weights
+        // of every row the slot is a part of.
+        for (var slot in rows[row]) {
+          slotPriorityList[rows[row][slot]-1] += 1 + rowPriorityList[row][1];
         }
       }
 
+      // Now that the slots are all weighted, it chooses the best one and marks it:
       var countdown = 9;
-    // Mark the highest ranking available slot
     function compPlaceIntelligentMark() {
       console.log("compPlaceIntelligentMark");
       if (countdown===0) {
-        randomMove(); // If there's only one slot available, and it can't detect it, it moves randomly until it finds it.
-        // Otherwise it was endlessly looping sometimes. This is faster than coding an iteration to find it.
+        randomMove(); // If there's only one slot available, it moves randomly until it finds it.
+                      // This solves a bug where it would endlessly loop sometimes.
       } else {
-        var bestSlot = slotPriorityList.indexOf(Math.max(...slotPriorityList)) + 1;
-        if (document.getElementById(bestSlot).innerHTML == "&nbsp;") {
-          document.getElementById(bestSlot).innerHTML = compMark;
-          document.getElementById(bestSlot).className = "compSlot";
-          sound2.cloneNode(true).play();
-          compMovedAlready = true; 
-        } else {
-          slotPriorityList[bestSlot - 1 ] = 0;
-          countdown--;
-          compPlaceIntelligentMark();
-        } 
-      }
+        var bestSlot = slotPriorityList.indexOf(Math.max(...slotPriorityList)) + 1; // Get highest priority slot.
+        if (document.getElementById(bestSlot).innerHTML == "&nbsp;") { // Check if it's empty.
+        document.getElementById(bestSlot).innerHTML = compMark;
+        document.getElementById(bestSlot).className = "compSlot";
+        sound2.cloneNode(true).play();
+        compMovedAlready = true; 
+        } else { // If it isn't, get the next best.
+        slotPriorityList[bestSlot - 1 ] = 0;
+        countdown--;
+        compPlaceIntelligentMark();
+      } 
     }
-    compPlaceIntelligentMark();
   }
+  compPlaceIntelligentMark();
+}
 
-  compMove = function() {
-    console.log("compMove");
-    disableMouse();
+compMove = function() {
+  console.log("compMove");
+  disableMouse();
 
-    highlights = emptySlotCounter/2;
+  highlights = emptySlotCounter/2;
 
-    randomHighlight = function() {
-      console.log("randomHighlight");
-      compHover = Math.floor(Math.random() * 9) + 1;
-      lastcompHover = 10;
-      if (document.getElementById(compHover).innerHTML == "&nbsp;" && compHover !== lastcompHover) {
-        document.getElementById(compHover).className = 'compHover';
-        lastcompHover = compHover;
-        setTimeout(function(){
-          document.getElementById(compHover).className = 'slot';
-          highlights--;
-          if (highlights > 0) {
-            randomHighlight();
-          } else {
-            highlights = emptySlotCounter/2 - difficulty/2;
+  randomHighlight = function() {
+    console.log("randomHighlight");
+    compHover = Math.floor(Math.random() * 9) + 1;
+    lastcompHover = 10;
+    if (document.getElementById(compHover).innerHTML == "&nbsp;" && compHover !== lastcompHover) {
+      document.getElementById(compHover).className = 'compHover';
+      lastcompHover = compHover;
+      setTimeout(function(){
+        document.getElementById(compHover).className = 'slot';
+        highlights--;
+        if (highlights > 0) {
+          randomHighlight();
+        } else {
+          highlights = emptySlotCounter/2 - difficulty/2;
 
-            randomMove = function() {
-              console.log("randomMove");
-              randomSlot = Math.floor(Math.random() * 9) + 1;
-              if ($("#" + randomSlot).html() == "&nbsp;") {
-                $("#" + randomSlot).html(compMark);
-                document.getElementById(randomSlot).className = "compSlot";
-                sound2.cloneNode(true).play();
-              } else {
-                randomMove();
-              }
-            }
-            if (difficulty > 10) {
-              AI();
-            } else if (Math.floor(Math.random() * difficulty) < 1) {
-              randomMove();
+          randomMove = function() {
+            console.log("randomMove");
+            randomSlot = Math.floor(Math.random() * 9) + 1;
+            if ($("#" + randomSlot).html() == "&nbsp;") {
+              $("#" + randomSlot).html(compMark);
+              document.getElementById(randomSlot).className = "compSlot";
+              sound2.cloneNode(true).play();
             } else {
-              AI();
-            }
-            emptySlotCounter -= 1;
-            playerGoesNext = true;
-            playerWentLast = false;
-            winCheck();
-            if (playerGoesNext && !gameOver) {
-      console.log("compMove function called enableMouse");
-              enableMouse();
+              randomMove();
             }
           }
-        },250);
-} else {
+          if (difficulty > 10) {
+            AI();
+          } else if (Math.floor(Math.random() * difficulty) < 1) {
+            randomMove();
+          } else {
+            AI();
+          }
+          emptySlotCounter -= 1;
+          playerGoesNext = true;
+          playerWentLast = false;
+          winCheck();
+          if (playerGoesNext && !gameOver) {
+            console.log("compMove function called enableMouse");
+            enableMouse();
+          }
+        }
+      },250);
+    } else {
+      randomHighlight();
+    }
+  }
   randomHighlight();
-}
-}
-randomHighlight();
 
 }
 })

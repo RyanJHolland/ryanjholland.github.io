@@ -18,6 +18,13 @@ h3 {
   font-size: 20px;
 }
 
+#increaseDifficulty {
+  background-color: pink;
+}
+#decreaseDifficulty {
+  background-color: lightgreen;
+}
+
 #board {
   margin: 0 auto;
   width: 300px;
