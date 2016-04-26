@@ -172,11 +172,14 @@ h2 {
 
 h5 {
 	margin: 10px;
+<<<<<<< HEAD
 	-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
         -ms-animation: fadein 1s; /* Internet Explorer */
          -o-animation: fadein 1s; /* Opera < 12.1 */
             animation: fadein 1s;
+=======
+>>>>>>> a58e74a8808f57d93c1bffd9339a7e8a8b8f8cba
 }
 
 .portfolioHeader {
