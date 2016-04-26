@@ -25,7 +25,6 @@
 		<br><br><br>
 <!--
 		<div id="introText">
-
 		</div>
 	-->
 	<nav>
@@ -87,20 +86,12 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio3Div">
-<<<<<<< HEAD
-			<a href="http://www.salientgreen.net"><img alt="Salient Green" class="portfolioImg smallImg" src="pansies.jpg"/></a>
-			<h2 class="portfolioHeader"><a href="http://www.salientgreen.net">Business Web Page</a></h2>
-			<br><br>
-			A web page for a boutique gardening business, designed from a PDF file. Just HTML and CSS3.
-			<br><br>
-=======
 			<a href="https://onepagewonder.herokuapp.com/"><img alt="One Page App screenshot" class="portfolioImg smallImg" src="onepagewonder.png"/></a>
 			<h2 class="portfolioHeader"><a href="https://onepagewonder.herokuapp.com/">One Page Wonder</a></h2>
 			<br><br>
 			A site on which the URL can be changed without the page reloading, like on SoundCloud. This enables features such as streaming audio to persist while the user navigates the site. Manipulates the browser history and URL using history state commands. Back-end written in node.js.
 			<br><br>
 			<a href="https://github.com/RyanJHolland/onepagewonder">See code on Github</a>
->>>>>>> a58e74a8808f57d93c1bffd9339a7e8a8b8f8cba
 		</div>
 
 		<br>
@@ -128,23 +119,9 @@
 		<br>
 
 		<div class="darkOnLight" id="portfolio6Div">
-<<<<<<< HEAD
-		<a href="https://onepagewonder.herokuapp.com/"><img alt="One Page App screenshot" class="portfolioImg smallImg" src="onepagewonder.png"/></a>
-			<h2 class="portfolioHeader"><a href="https://onepagewonder.herokuapp.com/">One Page Wonder</a></h2>
-			<br><br>
-			A site on which the URL can be changed without the page reloading, like on SoundCloud. This enables features such as streaming audio to persist while the user navigates the site. Manipulates the browser history and URL using history state commands. Back-end written in node.js.
-			<br><br>
-			<a href="https://github.com/RyanJHolland/onepagewonder">See code on Github</a>
 
-		</div>
-
-		<br>
-
-		<div class="darkOnLight" id="portfolio7Div">
-=======
-
->>>>>>> a58e74a8808f57d93c1bffd9339a7e8a8b8f8cba
 			<h2>Other projects:</h2>
+			<a href="http://www.salientgreen.net">Business website</a>: based on a PSD I was given. Only uses CSS3 and HTML.
 			<a href="http://codepen.io/RyanJHolland/pen/LNRVXo">Poll</a>: A simple React exercise.
 			<br><br>
 			<a href="calculator.html">Calculator</a>, or should I say a COOLculator? ... CalCOOLator?... I probably shouldn't.
@@ -222,20 +199,15 @@ setTimeout(function() {
 document.body.className = "highResBackground";
 }, 2500);
 */
-
 var moreInfoChromeExtension = function() {
 	document.getElementById('moreInfoSpanChromeExtension').style.display = 'initial';
 	document.getElementById('moreInfo').style.display = 'none';
 };
-
 // I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
 var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "portfolio6Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
-
 //var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
-
 var downArrow = true;
 window.addEventListener("scroll", function(){
-
 	if (downArrow) {
 		document.getElementById("downArrow").style.display = "none";
 	}
@@ -271,7 +243,6 @@ window.addEventListener("scroll", function(){
 			*/
 		};
 	});
-
 window.smoothScroll = function(target) {
 	var scrollContainer = target;
     do { //find scroll container
@@ -279,19 +250,15 @@ window.smoothScroll = function(target) {
     	if (!scrollContainer) return;
     	scrollContainer.scrollTop += 1;
     } while (scrollContainer.scrollTop == 0);
-
-
     if (downArrow) {
     	var targetY = -50;
     } else {
     	var targetY = 0;
     }
-
     do { //find the top of target relatively to the container
     	if (target == scrollContainer) break;
     	targetY += target.offsetTop;
     } while (target = target.offsetParent);
-
     scroll = function(c, a, b, i) {
     	i++; if (i > 30) return;
     	c.scrollTop = a + (b - a) / 30 * i;
