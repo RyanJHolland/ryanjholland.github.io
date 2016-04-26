@@ -1,0 +1,32 @@
+#topPad {
+	height: 20px;
+}
+
+#introText {
+	font-size: 15px;
+	padding: 10px;
+	margin: 0%;
+}
+
+.darkOnLight {
+	margin: 0px -10px 0px -10px;
+}
+
+.portfolioImg {
+	border: 1px solid #3399ff;
+	width: 100%;
+	margin-left: 0px;
+}
+
+#navBar {
+	font-size: 19px !important;
+}
+
+
+h2 {
+	text-align: center;
+}
+
+.smallImg {
+	width: 100%;
+}

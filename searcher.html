@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Wikipedia Searcher</title>
+	<meta name="description" content="              ">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="searcher.css" rel="stylesheet">
+	<script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+<div id="stuff">
+  <input type="text" onkeyup="callAPI()" id="searchBar" autofocus="autofocus">
+  <input type="button" class="button" value="Search" id="search">
+  <input type="button" class="button" value="Random" id="random">
+  
+</div>
+
+
+<br>
+<div id="results">
+</div>
+
+<script src="searcher.js"></script>
+</body>
+</html>

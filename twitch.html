@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Twitch Streamer status checker</title>
+	<meta name="description" content="Twitch streamer status checker">
+	<meta name="author" content="Ryan Holland">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<style>html {
+		text-align: left;
+		padding-top: 1%;
+	}
+
+	.container {
+		max-width: 30%;
+	}
+
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		float: left;
+	}
+</style>
+
+<script src="jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<button type="button" class="btn-default" id="All" onclick="All()">All</button>
+		<button type="button" class="btn-default" id="Online" onclick="Online()">Online</button>
+		<button type="button" class="btn-default" id="Offline" onclick="Offline()">Offline</button>
+		
+	</div>
+
+	<div class="container">
+		<a href="#" id="stream0" type="button" class="btn-default">im stream 0</a>
+		<br>
+		<a href="#" id="stream1" type="button" class="btn-default">1</a>
+		<br>
+		<a href="#" id="stream2" type="button" class="btn-default">2</a>
+		<br>
+		<a href="#" id="stream3" type="button" class="btn-default">3</a>
+		<br>
+		<a href="#" id="stream4" type="button" class="btn-default">4</a>
+		<br>
+		<a href="#" id="stream5" type="button" class="btn-default">5</a>
+		<br>
+		<a href="#" id="stream6" type="button" class="btn-default">6</a>
+		<br>
+		<a href="#" id="stream7" type="button" class="btn-default">7</a>
+		<br>
+
+	</div>
+
+	<script>streamerList = ["freecodecamp", "syndicate", "captainsparklez", "fairlight_excalibur", "nl_kripp", "MedryBW", "noobs2ninjas", "beohoff"]
+
+		$(document).ready(function() {
+			counter = 0;
+			for (var i in streamerList) {
+
+				$.getJSON("https://api.twitch.tv/kraken/streams/" + streamerList[i], function(json) {
+        //The callback function does not fire until the API returns, but the loop continues without waiting for the API return. Because of this, we cannot use "i" to iterate through the APIs and pull data; i is already equal to 8 by the time the first API returns. We also cannot use "counter", because the replies are sometimes out of order! So we must pull data from each API using only the information it contains. My solution leaves them out of order, although they could be sorted to their original order.
+
+        if (json.stream === null) {
+        	$("#stream" + counter).html("<br><img src=\"https://placeholdit.imgix.net/~text?txtsize=6&txt=50%C3%9750&w=50&h=50\"<br>" + json._links.self.slice(37) + "<br><span class=\"glyphicon glyphicon-remove\" style=\"color:red\"></span> Offline");
+        	
+        	$("#stream" + counter).addClass("Offline");
+        } else {
+        	$("#stream" + counter).html("<br><img src=\"" + json.stream.channel.logo + "\"<br>" + json.stream.channel.display_name + "<br><span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Online!<br>Streaming: " + json.stream.game + "<br>" + json.stream.channel.status);
+        	
+        	$("#stream" + counter).addClass("Online");
+        }
+        $("#stream" + counter).attr("href", "http://www.twitch.tv/" + json._links.self.slice(37));
+        counter += 1;
+    });
+}
+}
+
+)
+
+function All() {
+	$(".Online").attr("style", "display:initial");
+	$(".Offline").attr("style", "display:initial");
+}
+
+function Online() {
+	$(".Online").attr("style", "display:initial");
+	$(".Offline").attr("style", "display:none");
+}
+
+function Offline() {
+	$(".Online").attr("style", "display:none");
+	$(".Offline").attr("style", "display:initial");
+}
+
+function search() {
+
+}
+</script>
+
+</body>
+</html>
