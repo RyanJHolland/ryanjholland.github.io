@@ -194,80 +194,99 @@
 
 
 <span id="contactAnchor" class="center"></span>
-<script>
-/*
-setTimeout(function() {
-document.body.className = "highResBackground";
-}, 2500);
-*/
-var moreInfoChromeExtension = function() {
-	document.getElementById('moreInfoSpanChromeExtension').style.display = 'initial';
-	document.getElementById('moreInfo').style.display = 'none';
-};
-// I used vanilla JS instead of JQuery because JQ wasn't animating the transitions when classes were swapped, and rather than install JQ UI and use its custom animation methods, I wanted to keep it simple and light. I don't know whether it's the "best practice", but I enjoy speaking directly to the DOM rather than translating through JQ.
-var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "portfolio6Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"];
-//var initialNavBar = document.getElementById("navBar").getBoundingClientRect().top;
-var downArrow = true;
-window.addEventListener("scroll", function(){
-	if (downArrow) {
-		document.getElementById("downArrow").style.display = "none";
-	}
 	
-		// finds distance of visible window from the actual top of the page:
-		var scrollTop = (window.pageYOffset !== undefined) ?
-		window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-		
-		var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-		
+	
+<script>
+	// This controls what happens if you hit "more info" on the portfolio div for the Chrome extension:
+	var moreInfoChromeExtension = function() {
+		document.getElementById('moreInfoSpanChromeExtension').style.display = 'initial'
+		document.getElementById('moreInfo').style.display = 'none'
+	};
+	
+	// keeps track of each section or item (the gray boxes with projects in them):
+	var pageSections = ["portfolioHeader", "portfolio1Div", "portfolio2Div", "portfolio3Div", "portfolio4Div", "portfolio5Div", "portfolio6Div", "aboutHeader", "aboutDiv", "contactHeader", "contactDiv"]
+	
+	// down arrow button thingey starts off being visible:
+	var downArrow = true
+	
+	// The below code happens when the user scrolls and is used to display smooth fadeins for the page sections:
+	window.addEventListener("scroll", function(){
+	
+		// removes the down arrow once the user starts to scroll:
+		if (downArrow) {
+			document.getElementById("downArrow").style.display = "none"
+		}
+
+		// gets the current size of the browser window:
+		var viewportHeight = Math.max
+		(
+			document.documentElement.clientHeight,
+			window.innerHeight || 0
+		)
+
 		// checks whether we have scrolled past each section yet:
 		for (var i in pageSections) {
-			
-			if (document.getElementById(pageSections[i]).getBoundingClientRect().top +
-				window.pageYOffset - document.documentElement.clientTop < scrollTop + viewportHeight+100) {
-				
-				if (document.getElementById(pageSections[i]) != null && !document.getElementById(pageSections[i]).classList.contains("active")) {
-					document.getElementById(pageSections[i]).classList.add("active");
+
+			var section = document.getElementById(pageSections[i])
+
+			// checks if the top of the section is above the bottom of the browser window, because at that point, we are ready to have the section fade up and in:
+			if (
+				// distance from the top of the browser window to the top of the section (before we scroll down, this will be a big number... But as we scroll, section tops stay the same size while clientTop increases, so this number shrinks):
+				section.getBoundingClientRect().top - document.documentElement.clientTop
+				// is less than the height of the browser window + 100px (Without the 100px it was starting to fade in too soon):
+				< viewportHeight + 100
+			) {
+				// now that the top of the section is above the bottom of the browser window (meaning we have scrolled far enough that this section should be displayed on the page), set its css to visible:
+				if (
+					section != null &&
+					!section.classList.contains("active")
+				) {
+					section.classList.add("active")
 				}
 			} else {
 				// if not, make it inactive if it is active:
-				if (document.getElementById(pageSections[i]) != null && document.getElementById(pageSections[i]).classList.contains("active")) {
-					document.getElementById(pageSections[i]).classList.remove("active");
+				if (
+					section != null &&
+					section.classList.contains("active")
+				) {
+					section.classList.remove("active")
 				}
 			}
-			/*
-			console.log(initialNavBar + " | " + scrollTop);
-			if (scrollTop > initialNavBar) {
-				document.getElementById("navBar").classList.add("header");
-			} else {
-				document.getElementById("navBar").classList.remove("header");
-			}
-			*/
 		};
 	});
-window.smoothScroll = function(target) {
-	var scrollContainer = target;
-    do { //find scroll container
-    	scrollContainer = scrollContainer.parentNode;
-    	if (!scrollContainer) return;
-    	scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop == 0);
-    if (downArrow) {
-    	var targetY = -50;
-    } else {
-    	var targetY = 0;
-    }
-    do { //find the top of target relatively to the container
-    	if (target == scrollContainer) break;
-    	targetY += target.offsetTop;
-    } while (target = target.offsetParent);
-    scroll = function(c, a, b, i) {
-    	i++; if (i > 30) return;
-    	c.scrollTop = a + (b - a) / 30 * i;
-    	setTimeout(function(){ scroll(c, a, b, i); }, 20);
-    }
-    // start scrolling
-    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-}
+	// End of the code that runs each time the user scrolls.
+
+	///////////////////////////
+	
+	// This is the code that runs if you click a link from the top, making the page scroll down smoothly to the part you want. You pass it a div id such as contactAnchor, and it scrolls down to that anchor:
+	
+	window.smoothScroll = function(anchor) {
+		var scrollContainer = anchor;
+	    do {
+		scrollContainer = scrollContainer.parentNode
+		if (!scrollContainer) return
+		scrollContainer.scrollTop += 1 
+	    } while (scrollContainer.scrollTop == 0)
+	    if (downArrow) {
+		var anchorY = -50
+		    // because the down arrow thing takes 50 px of space, but disappears after you scroll far enough.
+	    } else {
+		var anchorY = 0
+	    }
+	    do {	// find the top of the anchor relative to the container
+		if (anchor == scrollContainer) break
+		anchorY += anchor.offsetTop
+	    } while (anchor = anchor.offsetParent)
+		    
+	// algorithm for smooth page scrolling:
+	    scroll = function(c, a, b, i) { 
+		i++; if (i > 30) return
+		c.scrollTop = a + (b - a) / 30 * i
+		setTimeout(function(){ scroll(c, a, b, i); }, 20)
+	    }
+	    // start scrolling
+	    scroll(scrollContainer, scrollContainer.scrollTop, anchorY, 0)
+	}
 </script>
 </body>
 
